@@ -12,7 +12,7 @@
 - impostare accesso dall'esterno
     - tailscale? video pischello di youtube
 - impostare aMule
-- impostare pihole
+- impostare pihole https://www.youtube.com/watch?v=rDNWhwWCk2k
 - impostare jellyfin
     - accesso da tv android
 - studiare e impostare RAID
