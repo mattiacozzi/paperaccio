@@ -14,6 +14,7 @@
     - auto add torrents?
     - https://www.youtube.com/watch?v=WV-LqATDUnw
     - usare uno script!
+    - fare come nel video di jellyfin
 - impostare accesso dall'esterno
     - tailscale? video pischello di youtube
     - https://community-scripts.github.io/ProxmoxVE/scripts?id=add-tailscale-lxc
