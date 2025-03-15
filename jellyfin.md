@@ -1,26 +1,25 @@
 #Installazione e impostazione Jellyfin
 ## Guida video
+https://www.youtube.com/watch?v=Uzqf0qlcQlo
+
+## Guida alternativa
 https://www.youtube.com/watch?v=AMhTLldaX54
 
 ## Collezione di scripts
 https://community-scripts.github.io/ProxmoxVE/scripts
 
 ## Informazioni sul container
+Root password
+
+    solitalunga
+
 Container ID
 
-    102
-
-Username
-
-    paperjelly
-
-Password
-
-    solita
+    103
 
 Indirizzo IP
 
-    192.168.1.142
+    192.168.1.135
 
 Porta
 
@@ -28,26 +27,35 @@ Porta
 
 Link di accesso
 
-    http://192.168.1.142:8096
+    http://192.168.1.135:8096
+
+Jellyfin username
+
+    paperjelly
+
+Password
+
+    solita
 
 ## Aggiungere storage al container
-Clic sul container, poi "Risorse" e "Aggiungi punto di montaggio". Seleziono la dimensione e "Path" è dove vedrò montato il disco nel container.
+Dalla shell del server:
 
-Per Jellyfin, imposto:
+    cd /etc/pve/lxc
 
-    /mnt/storage
+E faccio "cat" sull'impostazione del vault (vedi storage):
 
-Posso togliere la spunta da "Backup", perché non mi interessa fare il backup dei film!
+    cat 102.conf
 
-Perché qui non posso aggiungere i dataset che possiedo???
+Copio la riga del mountpoint0, in modo da poterla poi copiare nel container di Jellyfin e dare anche a lui l'accesso alla stessa cartella.
 
-Adesso posso accedere al disco virtuale dal container. Mi loggo nel container e 
+    mp0: data:102/vm-102-disk-0.raw,mp=/data,backup=1,size=800G
+
+Ora, restando nella stessa cartella:
+
+    nano 103.conf
+
+e aggiungo la riga precedente sotto a net0. Adesso il container di Jellyfin ha accesso allo share.
 
 ## Spostare files
 
-https://forum.proxmox.com/threads/help-moving-files-from-pc-into-an-lxc.142713/
-
-Meglio:
-
-https://www.reddit.com/r/Proxmox/comments/1d3xz04/copy_file_from_pc_to_lxc_storage/
-
+Uso il samba share che ho impostato.

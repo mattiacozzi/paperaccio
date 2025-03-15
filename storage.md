@@ -26,7 +26,7 @@ Un dataset ZFS appare al sistema operativo come un normale dispositivo montato, 
 ## Dettagli del mio pool
 Il nome del pool è:
 
-    storage
+    vault
 
 Il tipo di ridondanza è:
 
@@ -64,14 +64,9 @@ Se uso:
 Ottengo:
 
     NAME             USED  AVAIL  REFER  MOUNTPOINT
-    storage         1.25G   898G   104K  /storage
-    storage/data    1.25G   898G  1.25G  /data
-    storage/foto      96K   898G    96K  /storage/foto
-    storage/musica    96K   898G    96K  /storage/musica
-    storage/video     96K   898G    96K  /storage/video
+    vault            1.25G   898G   104K  /vault
 
-
-"storage" è il nome del mio primo dataset, "data" è il nome del secondo (interno al primo), eccetera.
+"vault" è il nome del mio primo dataset.
 
 ## Creazione dataset
 Posso creare nuovi dataset con:
@@ -83,31 +78,49 @@ Dall'interfaccia web, "Datacenter", e dal menu "Storage" clicco su "Add" e "Dire
 
 Imposto la directory per PVE, ovvero:
 
-    /storage/NOME
+    /vault/data
 
 e imposto il tipo di contenuto (controllo nel caso dalla shell quali cartelle ho a disposizione).
 
 Adesso il mio dataset è accessibile a PVE.
 
-## Aggiungere un dataset a un LXC
-Creo un container, poi clic su "Risorse" ???
+## Creazione di un container per le condivisioni di rete con Cockpit
+Creo un LXC con Ubuntu come base, lo chiamo "vault". Username root, pass solitalunga
+
+Aggiungo poi il mountpoint per il pool "data".
+
+Per gestire i network share install COCKPIT, molto semplice e comodo, con GUI.
+    
+    apt install --no-install-recommends cockpit
+
+Per accedere da Windows:
+
+    apt install wsdd 
+
+Per raggiungere Cockpit (trova nel caso l'IP con "ip a" nella shell del container):
+
+    192.168.1.64:9090
+
+Faccio login con le credenziali del container (vedi sopra).
+
+Installazione di diversi servizi di cockpit: file-sharing navigator, identities (vedi video).
+
+Adesso posso creare i miei utenti per accedere alle condivisioni di rete.
+
+Creo un nuovo gruppo chiamato "data-share".
+
+Creo un nuovo utente "mattia" e lo assegno ai gruppo "data-share", "users" e "sudo". Pass solita corta.
+
+Imposto la pass di samba (solita) e creo un server samba chiamato "Vault".
+
+Adesso posso accedere allo share da 
+
+    smb://192.168.1.64
+
+Username mattia pass solita corta.
 
 ## Impostare i backup
 Creo un dataset per i backup (vedi sopra) sul mio pool e da "Datacenter" imposto il backup.
 
-## Guida in italiano
-https://www.youtube.com/watch?v=RjutVOG-vGE
-
-## Guida grezza
-https://technonagib.com/sata-usb-disks-proxmox-ve/
-
-## Guida specifica
-https://www.youtube.com/watch?v=HqOGeqT-SCA
-
-## Guida con tutto USA LEI!!!
+## Guida
 https://www.youtube.com/watch?v=zLFB6ulC0Fg
-
-Guarda anche il video successivo per impostare jellyfin come fa lui
-
-## Guida molto chiara
-https://www.youtube.com/watch?v=oSD-VoloQag

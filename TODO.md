@@ -13,15 +13,15 @@
 - impostare transmission
     - auto add torrents?
     - https://www.youtube.com/watch?v=WV-LqATDUnw
+    - usare uno script!
 - impostare accesso dall'esterno
     - tailscale? video pischello di youtube
+    - https://community-scripts.github.io/ProxmoxVE/scripts?id=add-tailscale-lxc
 - impostare aMule
 - <s>impostare pihole</s>
-- impostare jellyfin 
-    - https://www.youtube.com/watch?v=qa2z-l2sni0
-    - https://www.youtube.com/watch?v=AMhTLldaX54
-    - accesso da tv android
-- studiare e impostare RAID
+- <s>impostare jellyfin </s>
+- <s>fare una tabella per le associazioni DCHP della LAN</s>
+- <s>studiare e impostare RAID</s>
     - https://www.youtube.com/watch?v=5I2aw_yVcRM
     - accesso da vari dispositivi
 - spostare files
