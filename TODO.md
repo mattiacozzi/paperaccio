@@ -1,7 +1,8 @@
 # COSE DA FARE
 - <s>acquistare pezzi</s>
 - <s>impostare ip fisso</s>
-- <s>wake on lan</s> https://justatip.it/abilitare-wake-on-lan-proxmox/
+- <s>wake on lan</s>
+  - https://justatip.it/abilitare-wake-on-lan-proxmox/
 - impostare spegnimento automatico con UPS attivo
     - https://www.youtube.com/watch?v=Tjc5dzGkRCI  
     - https://www.thesmarthomebook.com/2022/09/02/setting-up-monitor-your-ups-proxmox-home-assistant/
