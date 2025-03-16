@@ -30,7 +30,7 @@ Comando:
 ## Troubleshooting
 ### Problema iniziale
 La scheda di rete (enp1s0) non ha un indirizzo IP
-### Soluzione
+#### Soluzione
 Commento 9 su
 https://forum.proxmox.com/threads/network-is-unreachable-after-installation-unable-to-access-the-web-gui.124187/
 Modificare il file /etc/network/interfaces con nano:
@@ -49,6 +49,19 @@ Modificare il file /etc/network/interfaces con nano:
     bridge-ports enp3s0f0 # the network interface where to bridge to
     bridge-stp off
     bridge-fd 0
+
 Salvare e riavviare il server oppure 
     
     systemctl restart networking.service
+
+### Dopo un aggiornamento e un riavvio, host irraggiungibile
+Entrare in paperaccio e dare
+
+    ip a
+
+Noto che il nome della scheda di rete (NIC) è cambiato. 
+Per risolvere, ho dovuto:
+
+    nano /etc/network/interfaces
+
+e modificare il file con il nuovo nome della scheda di rete. Era "enp3s0f0", poi è diventato "eth0". Sostituire tutte le occorrenze del vecchio nome con il nuovo. Attenzione anche a farlo nella seconda parte del file, quella del bridge (vmbr0).
