@@ -10,8 +10,7 @@
     - sistemazione cavi
     - copertura con plexiglass
     - led?
-- impostare transmission
-    - auto add torrents?
+- <s>impostare transmission/qbittorrent</s>
     - https://www.youtube.com/watch?v=WV-LqATDUnw
     - usare uno script!
     - fare come nel video di jellyfin
@@ -19,6 +18,7 @@
     - tailscale? video pischello di youtube
     - https://community-scripts.github.io/ProxmoxVE/scripts?id=add-tailscale-lxc
 - impostare aMule
+    - https://wiki.amule.org/wiki/HowTo_get_aMule_web_interface
 - <s>impostare pihole</s>
 - <s>impostare jellyfin </s>
 - <s>fare una tabella per le associazioni DCHP della LAN</s>

@@ -6,6 +6,10 @@
     - adattatore da mSATA a SATA
     - RAM upgrade (4 -> 8)
 - Docking station (29,40 €)
-- Hard disk meccanici, 2 x 1 Tb (30,00 €)
+- Hard disk meccanici, 2 x 1 Tb (20,00 €)
 - Alimentatore nuovo (19,80 €)
 - Gruppo di continuità (25,00 €)
+
+### Totale
+
+    119,40 €
