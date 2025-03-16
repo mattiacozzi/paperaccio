@@ -31,10 +31,12 @@
     - https://www.youtube.com/watch?v=SI5fNBugG2w
 - impostare qualche strumento interfaccia CLI
     - tipo https://github.com/gokcehan/lf
-- auto backup di:
+- backup
     - PVE
+    - VM
+    - <s>LXC</s>
     - braineater
-    - containers
+    - auto backup?
 
 ## Markdown
 - vedi file di markdown con CTRL+SHIFT+V

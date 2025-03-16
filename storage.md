@@ -44,11 +44,26 @@ Per vedere gli storage configurati in PVE, uso:
 
 Ottengo:
 
-    zfspool: storage
-        pool storage
-        content images,rootdir
-        mountpoint /storage
-        nodes paperaccio
+    dir: local
+            path /var/lib/vz
+            content vztmpl,iso,backup
+
+    lvmthin: local-lvm
+            thinpool data
+            vgname pve
+            content rootdir,images
+
+    dir: backups
+            path /vault/backups
+            content backup,snippets
+            prune-backups keep-all=1
+            shared 0
+
+    dir: data
+            path /vault/data
+            content rootdir,images
+            prune-backups keep-all=1
+            shared 0
 
 Da notare il mountpoint, che inizia con uno slash.
 
