@@ -29,3 +29,12 @@ Se sto facendo il backup di una VM (non di un LXC) e ho installato l'agent di Qe
 ## Backup dell'host
 https://youtu.be/kcpu4z5eSEU?t=480
 
+Da https://forum.proxmox.com/threads/official-way-to-backup-proxmox-ve-itself.126469/#post-552579
+
+    /var/lib/pve-cluster/config.db  OK
+    /etc/corosync/*                 vuota
+    /etc/network/interfaces         OK
+    /etc/hostname                   OK
+    /etc/hosts                      OK
+
+Sono nella cartella "backups".

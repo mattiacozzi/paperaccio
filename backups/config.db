@@ -1,0 +1,466 @@
+SQLite format 3@  
+
+
+lltabletreetreeCREATE TABLE tree (  inode INTEGER PRIMARY KEY NOT NULL,  parent INTEGER NOT NULL CHECK(typeof(parent)=='integer'),  version INTEGER NOT NULL CHECK(typeof(version)=='integer'),  writer INTEGER NOT NULL CHECK(typeof(writer)=='integer'),  mtime INTEGER NOT NULL CHECK(typeof(mtime)=='integer'),  type INTEGER NOT NULL CHECK(typeof(type)=='integer'),  name TEXT NOT NULL,  data BLOB)     Is.
+??D^B-
+#\
+  pve-ssl.key-----BEGIN PRIVATE KEY-----
+MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCYJNv08/2vUb6d
+YYCCUCSFCFkly+agh96U0uP/tdRtE9DZ2WlPk/WW8IjRAsV2WrHTMWvrxzHB87RZ
+WnladLvVpt8cpL2LeTNvbhPRApJklSmdzOxqI0C+dGw1EA7W2SeAOs98PJgevv7U
+Zh+Oa8n/lqNKBMzUlqOlV+wt3JsKCD765D+1t2f51Ca7eXdYkJpCq9n5EtuXNaKL
+IYzB9ruyGXAR3u3afBThey4m8H8Tq1dms1CsG0bQlrm2Uv2uq7SNkvESyqC9JZLP
+D/NwA+4cIFfC15HT+ODp6oGxBNZMHK25yZWKVHPTwrwM7kVZmMKRGyalpB9mSfcR
+s4iMlWgVAgMBAAECggEAAf18gl0Y53uuk6iN75vI79gXVC0xUpKfnzLajrGbD6Rp
+zLIgPybblDay2IiukDS6JGZgavmp7fIvtmjpLtbh+WW+xAl4o7xwyXy/uByW2dAC
+kG/SfJuLFFGkUdobrB5NtpedSJJFvoqvBfsEVuQckaZaUTsBArl/Za4mGgJYXQtU
+Gq+LC3kW6KK5t/2gek+MinwMk3VZl6t00JGdGyA8vfjquIAnaFjvfhSocKhpgB+y
+RgRgJtZ8fegkw1n8ybl0hVjMgJl1a/PwFGl3naTzz9bxrkeJSKiXj2smR3KamP2U
+r1Py0UgTrttIuL4AFOGKJ3aqjeMmxAA8WT4Jtctz4QKBgQDLPCCd/+RkrYembZMs
+OR3TmiZiHgD5ABmsjJec2hq15/dtkuepzUW9aXy2Y/jndleCzNaveyh4DUcMKOLL
+ZDp5gn2RPf9bQ+dAETYV3/iuQhCUIIChVPRMw1jwXGOOq4i0BANcJUW6xhMPuxvY
+liL3s9+EpjDEl0kbIlnsEfaWdQKBgQC/pQJaKV5/aTb4NFWRXIcPxRE0BHr6eAS8
+8iH51nymEJbKkIrJFyNtYKCFfkeKJ/TqZqyOeUwTV7Gair2XYl+jcwvdFPvM5ztB
+8wuzktShYLTfsTSndzx0VbKSFTvKfj+X6P9IDYoQBBDM0PoPLB6Kb7vS9xKbTzCI
+mOjCBTmXIQKBgQDCOFXbaH41kHhAHhs1eef9HiVsQswfKW9frIP/S5eXG3Uja+6k
+IR1yo+qgyu1FFZ0PzP2leYb1I4swHaqPQNt437FsKdlsuHm4ijorsXyP22bIiD8k
+7nEBIvZNzZz+7QKZNfSYDK6UjVIOCHvWAbStD2Kd+8xDM2iT28IfjhMfOQKBgFAI
+cCAJEL6yyNMEwAtRkdHjIZkQme8JuijSEaBNk4aifOahUGRENnZSGRdGskefAif1
+svBY9Y1KXRBGCoEzAu+2dujf/3wFwPh8sJFQq12tjjuwvGWHZQbMVyOsnGinKpWd
+JycHCHZBzGZMi3FUonh7yvuCVRHpE0KoYOPN3MwhAoGBAMj/ugQmYwjXl5RIqO7B
+f1DRBT174YQp7OutO7FrwoIaIxfje5OvxWDO9EeWWqmYEyLnxXQyW9ev961hI6Hk
+i2lTxzc7e59hnX1WomRUbKUqzaUWCrdR+LeYrx642bFeHX0gncU6D1vuHtYq+AnY
+x91a7z1SdEm7noLhTickTzXb
+-----END PRIVATE KEY-----
+C
+#\gpve-www.key-----BEGIN PRIVATE KEY-----
+MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCcAUGi+tH0NlHM
+AJSij1zw7L5VIZvKZrCPKxXgBitIKQEQNrf3tSESz1h7yarU0JbW767mSReht/6n
+wWgKgDYKWRxDXsj8NmNdl6oPqGx94/4QKdKi95Hc7xxG7YC3Zq5n52KrRTPjpbbm
+PnNTcJqi9i5HkRHvAcXaDxlrpIAzk3Dj9Vi6rXzdNnSRVIAst71eBXs+Yg6Id9Id
+ur2HaYTmmR4sy8gCZ2qRcIsD8v475jA3DDAdcspTh9Zu8u8tV5Y5sa3pw3W1pfCd
+pZWeJ39XAmjZnEMIukZiVlPULbZj5rdR9n7Xr6nVmCVCdhtrBJTdvQXalGsIcfpg
+LmcfU4kbAgMBAAECggEAFFUPlmvFQGRx/boXpSY1MUtRtSu3r8X5ffdaFwQG0RVT
+B6dyC61GPbrbZ+rNQoZbGnFLpMTi+RdPb9LDuhaitG+PwPISFNkL009ogTjsxu2X
+l8izpLzKfHaHg3EB5SVTVsRv9i2DSUi4UULTag0Tgmi+eGJeaX2cKULth7t9X/tD
+q1Lui0xzLY7LQTJh8ioMP6/uNW8U0AHOtua2svIzZRxNgE0d24/wDOfDIuCK4qB1
+e0YcRgneZ1q/Q+kks+GQt2fXcOZTxikZD9DK9oJZL9H3u5ut27oBM5xW/k8SvjFA
+n86XSbV2wwpYBMagrPRlb0TpxjClgSRLprzlmc76uQKBgQDYHvDBiKK985A9BhAY
+OVtNXGGlD9WEsOaHZgsvqaYJtB6gn6u6mtQCJqHY/FZF1GAIdg0Pb82aYFS7O8I7
+34tvR9GmOcRE4wZwyQW83AnwhACMiC4lStk97KE/sz5Gt+JXyzRiiK2v5BUVWZG3
+RAhMmw+6Z4TJZ1lzs0XC/sLYKQKBgQC4ypMX2v2PH4nepjy+fcx85upJj3uFt+Y1
+fdfgqEC4nTNOIi8bsg+H3KEMQROrKr8z00qUOm5mxpzfFnco2cU9piLH3w8KUzBY
+E4IyXQr4RfUmtGIRl1cMGQy92g0XXlThsKbVdmHqV9xf+XoVnCf71/f3iqp1FVDJ
+1xOzIv2PowKBgF07e8EBoLMxD1hD9U198NU+tSDv47yKU+i1LL4zAV3ORigkuYCW
+qj8DS26/7LfTFlqQErJGGPwv8l2TOgd6ODyZTufWo8TT60NcdQ00H1WSnGoDlWSh
+FXaRTj6cpJD9YrddAgw/yi3GxxGewi29O5dQjUhsv+vimcQ/4ihsnsGBAoGAP0DQ
+Is1KF9Ci37yldEsZUPO15KIhlP8C5PKDj5noNYlRw3/+AgvsNwQ1eD1aXy/NrQ65
+K43otnNrxQ0qkqggVN7mbuYSfuVE2hErctPYam1/4dTC8OSN3k1AyEe4TXRzt6FB
+KjZQg+e5Pnzl5jnCkfk2HtyvRk6ajcx6KMpkYuMCgYBejGYYv32IjqmFvd1IABd/
+3v74ss1Lhz4vm/CEBRmPhr231mJysQUi1KYYDTPGe+a/VTyTTZw8EbKgEfepwNw0
+dyS1jD0ge+kRlGgomVzC84xJexZNuChdmFXNDoGkoy44P5FWMoVJvE5DaIofd0Jr
+qjwMWNLE9Z/N90W5Lncbrg==
+-----END PRIVATE KEY-----
+        gWlock
+               gWpriv
+                       gWopenvz
+                               Wqemu-server
+gWlxc
+       !
+
+        gWpaperaccio
+
+                      gWnodes #
+                               g؍__version__            gWprivg<virtual-guestCduser.cfguser:root@pam:1:0:::cozzimattia@gmail.com::
+**    )&datacenter.cfgkeyboard: it
+h!
++       gpve-root-ca.key-----BEGIN PRIVATE KEY-----
+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
+fzQ9pNooZMvHi1282W9G8wG6iArcFQ==
+-----END PRIVATE KEY-----
+.
+#
+ 1pve-ssl.pem-----BEGIN CERTIFICATE-----
+MIIE/TCCAuWgAwIBAgIBATANBgkqhkiG9w0BAQsFADB2MSQwIgYDVQQDDBtQcm94
+bW94IFZpcnR1YWwgRW52aXJvbm1lbnQxLTArBgNVBAsMJDFmMWZlNzdjLTkxYzEt
+NDM5YS1hMWJlLTE5NjNkNzVkNTEyMjEfMB0GA1UECgwWUFZFIENsdXN0ZXIgTWFu
+YWdlciBDQTAeFw0yNTAzMDEyMzIwMjJaFw0yNzAzMDEyMzIwMjJaMFkxGTAXBgNV
+BAsTEFBWRSBDbHVzdGVyIE5vZGUxJDAiBgNVBAoTG1Byb3htb3ggVmlydHVhbCBF
+bnZpcm9ubWVudDEWMBQGA1UEAxMNcGFwZXJhY2Npby5pbzCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAJgk2/Tz/a9Rvp1hgIJQJIUIWSXL5qCH3pTS4/+1
+1G0T0NnZaU+T9ZbwiNECxXZasdMxa+vHMcHztFlaeVp0u9Wm3xykvYt5M29uE9EC
+kmSVKZ3M7GojQL50bDUQDtbZJ4A6z3w8mB6+/tRmH45ryf+Wo0oEzNSWo6VX7C3c
+mwoIPvrkP7W3Z/nUJrt5d1iQmkKr2fkS25c1ooshjMH2u7IZcBHe7dp8FOF7Libw
+fxOrV2azUKwbRtCWubZS/a6rtI2S8RLKoL0lks8P83AD7hwgV8LXkdP44OnqgbEE
+1kwcrbnJlYpUc9PCvAzuRVmYwpEbJqWkH2ZJ9xGziIyVaBUCAwEAAaOBsjCBrzAJ
+BgNVHRMEAjAAMBMGA1UdJQQMMAoGCCsGAQUFBwMBME0GA1UdEQRGMESHBH8AAAGH
+EAAAAAAAAAAAAAAAAAAAAAGCCWxvY2FsaG9zdIcEwKgBAYIKcGFwZXJhY2Npb4IN
+cGFwZXJhY2Npby5pbzAdBgNVHQ4EFgQUaheFXuDng2oCIinsJVEqjT/4Qy4wHwYD
+VR0jBBgwFoAUKOrLYt+NGmNIFbNI2rRJWZakSfcwDQYJKoZIhvcNAQELBQADggIB
+AMhANTczaFEG+85uqS4Xe55rLAWRZPocv8fstwHKDyhor0tSs/385ZcSkJUXjzoP
+lFzf72ylY/zKu+RdVDP6n2caUvjbkY/aDnLwI4t0lx5CsSM01Z0qtPVztTZVC/iP
+3s2mXSsBR0YhIcSjWqSjs0y92bRxEwl7zbkW5Vu087aTIvo1hXl4RaFBGItUo20r
+aIkzAvrZ9gI1LiOazJvnmgomJ6SGitTBV4TYGpMQoJ1aDwkRDRPFkIgEDvskMDpp
+40GqDv7EWAlTCpfe5wnKxIgkEN2X/q4u+dVkHDzE7slAMotCfGzocZiQ0vFOtQqg
+l5d7ik2FrFlUGxsHGLuj4eFsiyiTkSFK7q70oe2bh0YztFdFj7xAuu1I2z70/rSC
+6lVwU4IGG+Ds1rJaK6Vh8imU+I9HPu6u1/KYWFgYiQMBg7Qg0gpOt3bfBq0wzhPi
+mCeMDa2LqcI1C/++btEJirvMV/Ep7Tub4EJVUtFpd3NIY3BikQc65jfp4NuLEmch
+X73FrlLjXuOtQr0nRDl0JMJPZCTd+qRTSzXHKWkdvT3YaGLEv/aOUZRXDgDauZio
+xCxbGwwigJJrQrB8YKMSE2qsO0CD6TfaootEPkJnwT/Z0GyGfPV7GjR4+80VlO7C
+DeKYEnyCWBaxoi7cb1SVPdunN6mMYYMm9HUCIc6z3T8l
+-----END CERTIFICATE-----
+#+     +        0pve-root-ca.srl01
+9
++@gpve-root-ca.pem-----BEGIN CERTIFICATE-----
+MIIFzTCCA7WgAwIBAgIUfKK3CGMCZb0zZ79XSTaYaeGTTqcwDQYJKoZIhvcNAQEL
+BQAwdjEkMCIGA1UEAwwbUHJveG1veCBWaXJ0dWFsIEVudmlyb25tZW50MS0wKwYD
+VQQLDCQxZjFmZTc3Yy05MWMxLTQzOWEtYTFiZS0xOTYzZDc1ZDUxMjIxHzAdBgNV
+BAoMFlBWRSBDbHVzdGVyIE1hbmFnZXIgQ0EwHhcNMjUwMzAxMjMwNjA2WhcNMzUw
+MjI3MjMwNjA2WjB2MSQwIgYDVQQDDBtQcm94bW94IFZpcnR1YWwgRW52aXJvbm1l
+bnQxLTArBgNVBAsMJDFmMWZlNzdjLTkxYzEtNDM5YS1hMWJlLTE5NjNkNzVkNTEy
+MjEfMB0GA1UECgwWUFZFIENsdXN0ZXIgTWFuYWdlciBDQTCCAiIwDQYJKoZIhvcN
+AQEBBQADggIPADCCAgoCggIBANtPrLp9lr9XGKKbneTGlbbWa6ZQ4GML2/tBJ1cA
+RTHPa/0mOvBbJxQM7jWKKJdDnidjpKFy7Z5rCiobQHGoetmUCbQETqJ8fWGeudfq
+cCoQHVUtFGAxws0xx4F6wRL5VfmmeQt16uBbCHUGWYaf6l5oTEmPXd2VGsXXuBhZ
+ahiADMRgmnRLUWyB3/dywFvDgOkeVYogyuXsXX4jtxMwoyuddmBliacvlf3FzMUA
+Ty1+HFGgT+ndx5XR3KmS7nDhjecpKpKbbzTLM3AObN4Kc+WPLNzT6H+6iUN5etYQ
+gPWPKUKiBwjvW9YRr3CugMH6wIeXVHIkXlM+1f9DiP76MZhsTgxklOcqDs/H46ax
+V9hRADipw7A2fAKSaIcB3mVYtmcLV7yz5Up3bmvdR5uhZrx31jd3qZgild881oxS
+1kp8s7XXdzr2daX8y/umFDzRAY4uVrGE2Udv989s2w1TMpXDeeJDy6e3RHSgmZs6
+tc3lMB8/iJMj16fU2AMjsH1LLmC5X3oWRWjbMMdMa5riY2wEAIY4JN0cSHouFlVy
+CCTvPmb7Dp9S9Y+jasP7QmmvS6q1e8LHKQ1iSOSZ56OzvKWvm5UGdCCEozzLo8d6
+3jz0E/xzpEWzAWeNcJkorryg1CPMEk3Z1Qvv6S8iH+rdsJtZVi0kvLrrjrlpJpaC
+pFR3AgMBAAGjUzBRMB0GA1UdDgQWBBQo6sti340aY0gVs0jatElZlqRJ9zAfBgNV
+HSMEGDAWgBQo6sti340aY0gVs0jatElZlqRJ9zAPBgNVHRMBAf8EBTADAQH/MA0G
+CSqGSIb3DQEBCwUAA4ICAQBqCQBm/fjBNh8XwuqyWWChSvd+k6AMLXBU/h9RUmEo
+Y7RKvQDssLSgnxkjfAJ6cqNjtXRgDd869nmXhDskCkl9mBjKPy/GIvPfKB6XKQsN
+I0RgQqNCHbeV0t7PxTYVYjocVNdSoVjrijTj4MrV3qbZ0mWgmMW/kDPagRAgF2I1
+gpRCKkrGUBkoItiWZpuP0B+TJqCqqhh7jqGedmz1I1ZbvBtcj6NT+c4OYbSg/8Q/
+t1lyXwzANSQACvOPoutPBUd+LddRahdol4ff9RA9f7F+8tSA6P9Al6fnDoTkQHFl
+KNG3/FSpl1N6L9i8f1HNRGY9r+X4cSZ59Glkf0uZov8P+5rQY2Z8tv0o7FfawiC6
+3op20nRJL5IL5cEuEgMEh94uw3wN+incvK6g+5Nt92qXXXfnOS1CeD53uYe0zJiy
+gm14pB1hNIktBdyik8IvXCfWZWYxIAxezr1fP2WjhJciy9Md6hs32nZB+Ow1R/Dj
+CzFQGmGXvqjh881nfbi6QUp0Aeq7ygmXsZZrC50vq5CkFu8xstq8/D8gkSvv+L2A
+RwrO4TO4c18DLgzD9q6s7+9UUZ/iTql3+t57aVAWgbLXeKC+0BhniPEyEtB6m+hn
+RLRyNiExOr0uyZ9U7E4w96N97Us4BD4vONPgLF0dwSZaPbOmEK5Ie2oRgT31qAH1
+QQ==
+-----END CERTIFICATE-----
+
+iN9
+@
+qs
+!4
+
+  iuglrm_status{"state":"wait_for_agent_lock","mode":"restart","timestamp":1742163100,"results":{}}U
++r
+
+  `gssh_known_hostspaperaccio ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDLiCwcmTZuKM0sVGVPnNGbPR9uZRjdwOJoUUcwDfrbGmHT6BeSXV9WF8mdnrIrnQsDx3jC2AKJDLwWuMmU0i5Qsta5ity3A8TAwrMS9tFMoKXfVtbD/i96KitaBisXkuIST81qs/CXgXCkAzun3RDxaolFax3j+2u/pwSJebWW92T/QGsM8YIDx7yAmiV9BJsLPOBVCgjIGDYGYn7ZLcBBFUtLGUkH9VKSO37hU6aYxNWvXSxV8HNYojuq95TfO/hK2nQRYhATjJJObsjOr3IRxVwTiYYr9VNEd+WNkFVOTvq4qTxqH3e+76UUrsWZDxvovkWQAROgEZIPigQiG9RYg80wv05RIAqThZ9uGG6EjTPVHoyCysJ0rsRfx/NwABPrmXbhkWfRBfs3wybk4H+xi51M1eXoGd4C+DVJxEbWpGI3Fay4Av6amelZlgl4HEa8gPumYzdnxzoEyjHZxYu/Cjs1rlIZiU3TUBZKtxGHp+5L3pUqnVnXlQgIXA2Hfw8=
++X
+        `gauthorized_keys
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCyn/AZxtnuAsFUz5e+Ba/rCNsRk2ETP2m+JCen1ZDfLTXuciZAKxQWiM8LWn0ixYR/nz1rOqsEs4T6zsHyGDsf5mgcM9cmaGk/OuAR7qQQa/i12i5XizgM/2cN7Nd19JEc1SjBmVbndTgvJ0p7Kk5uOkeE7WoezIJvNpDZ2Ay/jVthra1I4BSa/DRpYNgDB5L75YiPivoh73mlwWqEmp+NGxaEbe4x7tGH6BW2cCVKHSqPanVFw5pxds76lnijx5vI0JTN5JXV1FEycvQKvpHY2x2Mp6IRkO+THKlSegqNZ9blooPDrRmygBFOjnP27cnVRtjroh8R/QVG8dSVTOds91UhwOYX1euWbZf2ByIiMVOeg0VVdI0+7rlp3UXf0rkqxY4cPtvPCfLKT8rHgI4dkWBr5JlN9CKDq34xt2ek7f0t4p8vn9tB7NfFP6BISvqlvvzu/atcL/p49leQz8Sw5kaNLdUGCWglYoAteIuGSgjb43ViE+sbaLDQHskz6iouZhHgUEVLh7XvVDMbMWlfDziiwb2MPutsHteos5jhxKKDnHkoSlws1Vr6Q2yydalWyv1+6vMRt/z2fxIqI0CDdsqCeGQkdXl9KJzFlzBbDolxrS9jaUNC8wyDMi6t3gtXJ05Zhio+pPbkn2UZ1i6ZkGLJUXDsxxt/g/SgIQGc6Q== root@paperaccio
+V-
+#~
+rgstorage.cfgdir: local
+        path /var/lib/vz
+        content vztmpl,iso,backup
+
+lvmthin: local-lvm
+        thinpool data
+        vgname pve
+        content rootdir,images
+
+dir: backups
+        path /vault/backups
+        content backup,snippets
+        prune-backups keep-all=1
+        shared 0
+
+dir: data
+        path /vault/data
+        content rootdir,images
+        prune-backups keep-all=1
+        shared 0
+
+       gstorageNT
+t
+V100.confagent: 1
+boot: order=scsi0;ide2;net0
+cores: 1
+cpu: x86-64-v2-AES
+ide2: none,media=cdrom
+memory: 2048
+meta: creation-qemu=9.0.2,ctime=1740958844
+name: Ubuntu-server
+net0: virtio=BC:24:11:CF:5C:67,bridge=vmbr0,firewall=1
+numa: 0
+ostype: l26
+scsi0: local-lvm:vm-100-disk-0,discard=on,iothread=1,size=32G
+scsihw: virtio-scsi-single
+smbios1: uuid=0aafcc51-bad3-4b4c-8edb-f85ec10f9f5c
+sockets: 1
+vmgenid: 77c405f9-39b8-4efd-8ff3-a74641c670fa
+?     ?gsdn>    >gacmegmapping<gha;   ;gfirewall8
+#z:vzdump.cron# cluster wide vzdump cron schedule
+# Atomatically generated file - do not edit
+
+PATH="/usr/sbin:/usr/bin:/sbin:/bin"
+
+]
+ 2]3M* '
+        g؍Wfile-jobs_cfg-]
+#*
+        |gauthkey.key-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEAuH6JWOCTH4LEM4iHm4Z4Ah6yb6aWrzMGWD7pxu4qExEUFwVw
+tPJ7oXqo4gQmZrzBuif2hJbMN/8bDwhDkS9Hhn5ouRzJGBm0QRV8npiRSFphkH1a
+Wt/U0y/4MG5YqmmGuImgwtWY3mUPnAIrg6A9XkEGXQ8q8AHzO85lVXqxj5KBPY09
+05YHM7rQilcwrA/oz+EihjeKSpyNo3F3j3nNXL5QAXPdQriSyzYXEa+UJdVNx8Po
+ihdGjyjYTRIHNZY5VhtNtM13g6/s2Cb2EzunuCubYMcK3JD/I9f9Mdjh4kpLn8ai
+Eot2OMHxOhsg6gKXBprZrqgy/4xTFBcSsmWPYQIDAQABAoIBAE8mtl0jh+sCapNj
+VS5zq8PZEJuXAFmszeGJKDmYzwM8Ff7kbhyrVUALhC3nMuRrwb9QStJKcdXqQ90Y
+oghFHO4GCH62a03EJVGw2rSd5uKAKBBZvyxyj/eEwnlgtfhyaoJ8RTShd8Kd3+sC
+AVIoqntn8Ud2bOjoJUa4vz/Dci8SI52YQiWQ2+azkE1QZTrr2I+4+uapZA2k6Ga4
+HvT4D8wHn4mb0nHl1XKTTkn0Nk8/CfLy+2m0lzJo9c9R5ATepxCmjIxqe6uJO3cJ
+d/TNLZ2i86ifqpE41ruTsP3v+tR4WfSvaAXi3UsAMuLlwKoy3/OYSDaZ74neYXNr
+BNqT1RsCgYEA8LsHmtPWv1uDMvRZOpxtAybERrIEptOUbJsBLMRcFWXcX7GuA7h4
+xqWSFSiZ2AN1psIgwJONJJP0FIiM1dzjArqjeXy1GF8ARW3zmTOpcUF3xM8jqAdG
+vWOkPw9D/CRLIsAjl6cxGLWCgN2v0gwe8+1umQt6FJ5L0c+O/my/ARsCgYEAxDJY
+Qodjc+YBzh3U9zNsN6Qi8JBurvl3JUP/pfvEsmVXHVQ8ThO//zQ5edfoijr0MsPo
+vfvnAkhE6Q8f5sGUJKdx07Wl4DXvuJpDCFJzsZG1DQ1ohUq9k4hNhdeoNOa55hfC
+3YB5FqCMNWH2fHOFHfO3qRYQuykEDdrZs+r1dTMCgYEAiuyUhfBsxQAN5hEHkYCG
+lMQBj37ammAODuMhOXGUZrDjDcKfVvxVjuYsONO2fOf6NKNhfWFpmctcl6D6Dc2s
+oH2PK+QhKpBgurCqXSZoSbjrYoPb4vNYCqH/PnkT1eYoCkTyBWnyNn1BdBb7iW9/
+SWwjYGU0LcPwo4Nx1ThyvjMCgYAoWUo5dGqJnVXls9DmfdbVopXk728z4O4V5eQf
+mKWdIqZFy9sTG5CyxWTEoBicxP8Pqaal27Zoi8BQReIDrO/wkdcg+QyCDdWdG2yJ
+u5s7e4HGi2lhcDuIqdF3oyBesMyue1iCATfl5WKwX9M3SPKpdEPjLDyIoSjKSKXZ
+EIsmbQKBgQDmlyiEn+nfJ+2ho+VeBPCjtD3UeAIma+vuou75zBCMOwfVnicoPtA/
+LdP3uW2g0U8QnNAC4A0/7ltRiMJfyc6nDxawov04KMLowR8PSIreueDjaQTcZMBl
+5pExfN4glx/B1vPRLCDH4N15/sGhwbQETeoyyxhBOa0YKBSdxfUezQ==
+-----END RSA PRIVATE KEY-----
+`Z
+#
+ |gauthkey.pub-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuH6JWOCTH4LEM4iHm4Z4
+Ah6yb6aWrzMGWD7pxu4qExEUFwVwtPJ7oXqo4gQmZrzBuif2hJbMN/8bDwhDkS9H
+hn5ouRzJGBm0QRV8npiRSFphkH1aWt/U0y/4MG5YqmmGuImgwtWY3mUPnAIrg6A9
+XkEGXQ8q8AHzO85lVXqxj5KBPY0905YHM7rQilcwrA/oz+EihjeKSpyNo3F3j3nN
+XL5QAXPdQriSyzYXEa+UJdVNx8PoihdGjyjYTRIHNZY5VhtNtM13g6/s2Cb2Ezun
+uCubYMcK3JD/I9f9Mdjh4kpLn8aiEot2OMHxOhsg6gKXBprZrqgy/4xTFBcSsmWP
+YQIDAQAB
+-----END PUBLIC KEY-----
+dW
++
+ |gauthkey.pub.old-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvL0n/pa42F5KVCpo+CAB
+ZPtSpptRGPdqj/xi5xpU48j57zXUPofYnab0mb/6aCqgJwEompB9QOaMcGpSljcm
+tcHOUKOIasilOwahW1mgFOrytiLBrescgI3CkJbRiR2IWN//RExplOOQQICBzJlB
+bmSSa/2vI7guTJiiSxAY3e34WS1WLgSIKG1LaIvZKIsZfQV7zg3Vf0XdLzwZEY6Q
+AF3cR1e5TF92lPptjycsJ1KR0R3YYHvbp46e8Fr4sw0kHJm9mNBuzdzQ9NTyE7h2
+H8d+9V3ql9DXLQ7g5ufIKvNIT8BeXhyKz21Z3SxkC/BIKOEr5ZXKJkZVQdLDKKHO
+1QIDAQAB
+-----END PUBLIC KEY-----
+hdL9I
+H
+ig102.conf#<div><a href="https%3A//192.168.1.64%3A9090/system">https%3A//192.168.1.64%3A9090/system</a>
+arch: amd64
+cores: 1
+features: nesting=1
+hostname: vault
+memory: 512
+mp0: data:102/vm-102-disk-0.raw,mp=/data,size=800G
+net0: name=eth0,bridge=vmbr0,firewall=1,hwaddr=BC:24:11:4D:86:3F,ip=dhcp,ip6=dhcp,type=veth
+onboot: 1
+ostype: ubuntu
+rootfs: local-lvm:vm-102-disk-0,size=8G
+startup: order=2
+swap: 512
+unprivileged: 1
+L_;
+
+igP103.conf#<div align='center'>
+#  <a href='https%3A//Helper-Scripts.com' target='_blank' rel='noopener noreferrer'>
+#    <img src='https%3A//raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/images/logo-81x112.png' alt='Logo' style='width%3A81px;height%3A112px;'/>
+#  </a>
+#
+#  <h2 style='font-size%3A 24px; margin%3A 20px 0;'>Jellyfin LXC</h2>
+#
+#  <p style='margin%3A 16px 0;'>
+#    <a href='https%3A//ko-fi.com/community_scripts' target='_blank' rel='noopener noreferrer'>
+#      <img src='https%3A//img.shields.io/badge/&#x2615;-Buy us a coffee-blue' alt='spend Coffee' />
+#    </a>
+#  </p>
+#  
+#  <span style='margin%3A 0 10px;'>
+#    <i class="fa fa-github fa-fw" style="color%3A #f5f5f5;"></i>
+#    <a href='https%3A//github.com/community-scripts/ProxmoxVE' target='_blank' rel='noopener noreferrer' style='text-decoration%3A none; color%3A #00617f;'>GitHub</a>
+#  </span>
+#  <span style='margin%3A 0 10px;'>
+#    <i class="fa fa-comments fa-fw" style="color%3A #f5f5f5;"></i>
+#    <a href='https%3A//github.com/community-scripts/ProxmoxVE/discussions' target='_blank' rel='noopener noreferrer' style='text-decoration%3A none; color%3A #00617f;'>Discussions</a>
+#  </span>
+#  <span style='margin%3A 0 10px;'>
+#    <i class="fa fa-exclamation-circle fa-fw" style="color%3A #f5f5f5;"></i>
+#    <a href='https%3A//github.com/community-scripts/ProxmoxVE/issues' target='_blank' rel='noopener noreferrer' style='text-decoration%3A none; color%3A #00617f;'>Issues</a>
+#  </span>
+#</div>
+#<div><br><a href="http%3A//192.168.1.135%3A8096/">http%3A//192.168.1.135%3A8096/</a>
+arch: amd64
+cores: 1
+features: nesting=1
+hostname: jellyfin
+memory: 1024
+mp0: data:102/vm-102-disk-0.raw,mp=/data,size=800G
+net0: name=eth0,bridge=vmbr0,hwaddr=BC:24:11:EF:69:9D,ip=dhcp,type=veth
+onboot: 1
+ostype: ubuntu
+rootfs: local-lvm:vm-103-disk-0,size=16G
+startup: order=3
+swap: 512
+tags:  
+lxc.cgroup2.devices.allow: a
+lxc.cap.drop: 
+lxc.cgroup2.devices.allow: c 188:* rwm
+lxc.cgroup2.devices.allow: c 189:* rwm
+lxc.mount.entry: /dev/serial/by-id  dev/serial/by-id  none bind,optional,create=dir
+lxc.mount.entry: /dev/ttyUSB0       dev/ttyUSB0       none bind,optional,create=file
+lxc.mount.entry: /dev/ttyUSB1       dev/ttyUSB1       none bind,optional,create=file
+lxc.mount.entry: /dev/ttyACM0       dev/ttyACM0       none bind,optional,create=file
+lxc.mount.entry: /dev/ttyACM1       dev/ttyACM1       none bind,optional,create=file
+lxc.cgroup2.devices.allow: c 226:0 rwm
+lxc.cgroup2.devices.allow: c 226:128 rwm
+lxc.cgroup2.devices.allow: c 29:0 rwm
+lxc.mount.entry: /dev/fb0 dev/fb0 none bind,optional,create=file
+lxc.mount.entry: /dev/dri dev/dri none bind,optional,create=dir
+lxc.mount.entry: /dev/dri/renderD128 dev/dri/renderD128 none bind,optional,create=file
+-|k
+N
+wg#104.conf#<div align='center'>
+#  <a href='https%3A//Helper-Scripts.com' target='_blank' rel='noopener noreferrer'>
+#    <img src='https%3A//raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/images/logo-81x112.png' alt='Logo' style='width%3A81px;height%3A112px;'/>
+#  </a>
+#
+#  <h2 style='font-size%3A 24px; margin%3A 20px 0;'>qBittorrent LXC</h2>
+#
+#  <p style='margin%3A 16px 0;'>
+#    <a href='https%3A//ko-fi.com/community_scripts' target='_blank' rel='noopener noreferrer'>
+#      <img src='https%3A//img.shields.io/badge/&#x2615;-Buy us a coffee-blue' alt='spend Coffee' />
+#    </a>
+#  </p>
+#  
+#  <span style='margin%3A 0 10px;'>
+#    <i class="fa fa-github fa-fw" style="color%3A #f5f5f5;"></i>
+#    <a href='https%3A//github.com/community-scripts/ProxmoxVE' target='_blank' rel='noopener noreferrer' style='text-decoration%3A none; color%3A #00617f;'>GitHub</a>
+#  </span>
+#  <span style='margin%3A 0 10px;'>
+#    <i class="fa fa-comments fa-fw" style="color%3A #f5f5f5;"></i>
+#    <a href='https%3A//github.com/community-scripts/ProxmoxVE/discussions' target='_blank' rel='noopener noreferrer' style='text-decoration%3A none; color%3A #00617f;'>Discussions</a>
+#  </span>
+#  <span style='margin%3A 0 10px;'>
+#    <i class="fa fa-exclamation-circle fa-fw" style="color%3A #f5f5f5;"></i>
+#    <a href='https%3A//github.com/community-scripts/ProxmoxVE/issues' target='_blank' rel='noopener noreferrer' style='text-decoration%3A none; color%3A #00617f;'>Issues</a>
+#  </span>
+#</div>
+#<div><br><a href="http%3A//192.168.1.184%3A8080/">http%3A//192.168.1.184%3A8080/</a>
+arch: amd64
+cores: 1
+features: keyctl=1,nesting=1
+hostname: qbittorrent
+memory: 1024
+mp0: data:102/vm-102-disk-0.raw,mp=/data,size=800G
+net0: name=eth0,bridge=vmbr0,hwaddr=BC:24:11:0A:96:79,ip=dhcp,type=veth
+onboot: 0
+ostype: debian
+rootfs: local-lvm:vm-104-disk-0,size=8G
+swap: 512
+tags:  
+unprivileged: 1
+[`
+
+
+ig101.conf#<div align='center'>
+#  <a href='https%3A//Helper-Scripts.com' target='_blank' rel='noopener noreferrer'>
+#    <img src='https%3A//raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/images/logo-81x112.png' alt='Logo' style='width%3A81px;height%3A112px;'/>
+#  </a>
+#
+#  <h2 style='font-size%3A 24px; margin%3A 20px 0;'>pi-hole LXC</h2>
+#
+#  <p style='margin%3A 16px 0;'>
+#    <a href='https%3A//ko-fi.com/community_scripts' target='_blank' rel='noopener noreferrer'>
+#      <img src='https%3A//img.shields.io/badge/&#x2615;-Buy us a coffee-blue' alt='spend Coffee' />
+#    </a>
+#  </p>
+#  
+#  <span style='margin%3A 0 10px;'>
+#    <i class="fa fa-github fa-fw" style="color%3A #f5f5f5;"></i>
+#    <a href='https%3A//github.com/community-scripts/ProxmoxVE' target='_blank' rel='noopener noreferrer' style='text-decoration%3A none; color%3A #00617f;'>GitHub</a>
+#  </span>
+#  <span style='margin%3A 0 10px;'>
+#    <i class="fa fa-comments fa-fw" style="color%3A #f5f5f5;"></i>
+#    <a href='https%3A//github.com/community-scripts/ProxmoxVE/discussions' target='_blank' rel='noopener noreferrer' style='text-decoration%3A none; color%3A #00617f;'>Discussions</a>
+#  </span>
+#  <span style='margin%3A 0 10px;'>
+#    <i class="fa fa-exclamation-circle fa-fw" style="color%3A #f5f5f5;"></i>
+#    <a href='https%3A//github.com/community-scripts/ProxmoxVE/issues' target='_blank' rel='noopener noreferrer' style='text-decoration%3A none; color%3A #00617f;'>Issues</a>
+#  </span>
+#</div>
+#<div><br><a href="http%3A//192.168.1.198/admin/login">http%3A//192.168.1.198/admin/login</a>
+arch: amd64
+cores: 1
+features: nesting=1
+hostname: pi-hole
+memory: 512
+net0: name=eth0,bridge=vmbr0,firewall=1,hwaddr=BC:24:11:95:53:56,ip=dhcp,type=veth
+onboot: 1
+ostype: debian
+rootfs: local-lvm:vm-101-disk-0,size=8G
+startup: order=1
+swap: 512
+tags:  
+unprivileged: 1
