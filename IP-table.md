@@ -1,5 +1,59 @@
 # Tabella delle assegnazioni DCHP
 
+## Paperaccio
+IP
+
+    1
+
+MAC
+
+    f7
+
+## PiHole
+IP
+
+    198
+
+MAC
+
+    56
+
+## Jellyfin
+IP
+
+    135
+
+MAC
+
+    9d
+
+## Ubuntu Server
+IP
+
+    242
+
+MAC
+
+    67
+
+## qBittorrent
+IP
+
+    184
+
+MAC
+
+    79
+
+## Docker
+IP
+
+    194
+
+MAC
+
+    B4
+
 ## Braineater
 IP
 
@@ -53,48 +107,3 @@ IP
 MAC
 
     93
-
-## Paperaccio
-IP
-
-    1
-
-MAC
-
-    f7
-
-## PiHole
-IP
-
-    198
-
-MAC
-
-    56
-
-## Jellyfin
-IP
-
-    135
-
-MAC
-
-    9d
-
-## Ubuntu Server
-IP
-
-    242
-
-MAC
-
-    67
-
-## qBittorrent
-IP
-
-    184
-
-MAC
-
-    79

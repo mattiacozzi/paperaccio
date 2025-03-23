@@ -37,7 +37,7 @@
     - <s>LXC</s>
     - braineater
     - auto backup?
-- pagina web con tutti i link per paperaccio
+- <s>pagina web con tutti i link per paperaccio</s>
 
 ## Markdown
 - vedi file di markdown con CTRL+SHIFT+V

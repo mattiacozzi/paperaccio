@@ -13,7 +13,7 @@ E faccio "cat" sull'impostazione del vault (vedi storage):
 
     cat 102.conf
 
-Copio la riga del mountpoint0, in modo da poterla poi copiare nel container di Jellyfin e dare anche a lui l'accesso alla stessa cartella.
+Copio la riga del mountpoint0, in modo da poterla poi copiare nel container che sto creando e dare anche a lui l'accesso alla stessa cartella.
 
     mp0: data:102/vm-102-disk-0.raw,mp=/data,backup=1,size=800G
 
