@@ -1,34 +1,17 @@
 # COSE DA FARE
-- <s>acquistare pezzi</s>
-- <s>impostare ip fisso</s>
-- <s>wake on lan</s>
-  - https://justatip.it/abilitare-wake-on-lan-proxmox/
 - impostare spegnimento automatico con UPS attivo
     - https://www.youtube.com/watch?v=Tjc5dzGkRCI  
     - https://www.thesmarthomebook.com/2022/09/02/setting-up-monitor-your-ups-proxmox-home-assistant/
-- auto login ubuntu server?
+    - creazione di uno script che spegne il server se il ping del router fallisce
 - mettere in ordine lo scaffale
     - sistemazione cavi
     - copertura con plexiglass
     - led?
-- <s>impostare transmission/qbittorrent</s>
-    - https://www.youtube.com/watch?v=WV-LqATDUnw
-    - usare uno script!
-    - fare come nel video di jellyfin
 - impostare accesso dall'esterno
     - tailscale? video pischello di youtube
     - https://community-scripts.github.io/ProxmoxVE/scripts?id=add-tailscale-lxc
 - impostare aMule
-    - https://wiki.amule.org/wiki/HowTo_get_aMule_web_interface
-- <s>impostare pihole</s>
-- <s>impostare jellyfin </s>
-- <s>fare una tabella per le associazioni DCHP della LAN</s>
-- <s>studiare e impostare RAID</s>
-    - https://www.youtube.com/watch?v=5I2aw_yVcRM
-    - accesso da vari dispositivi
-- spostare files
-- auto backup foto dal telefono
-    - https://www.youtube.com/watch?v=SI5fNBugG2w
+    - uso Docker
 - impostare qualche strumento interfaccia CLI
     - tipo https://github.com/gokcehan/lf
 - backup
@@ -37,7 +20,25 @@
     - <s>LXC</s>
     - braineater
     - auto backup?
+- spostare files
+- auto login ubuntu server?
 - <s>pagina web con tutti i link per paperaccio</s>
+- <s>acquistare pezzi</s>
+- <s>impostare ip fisso</s>
+- <s>wake on lan</s>
+  - https://justatip.it/abilitare-wake-on-lan-proxmox/
+- <s>impostare pihole</s>
+- <s>impostare jellyfin </s>
+- <s>fare una tabella per le associazioni DCHP della LAN</s>
+- <s>studiare e impostare RAID</s>
+    - https://www.youtube.com/watch?v=5I2aw_yVcRM
+    - accesso da vari dispositivi
+- <s>auto backup foto dal telefono</s>
+    - https://www.youtube.com/watch?v=SI5fNBugG2w
+- <s>impostare qbittorrent</s>
+    - https://www.youtube.com/watch?v=WV-LqATDUnw
+    - usare uno script!
+    - fare come nel video di jellyfin
 
 ## Markdown
 - vedi file di markdown con CTRL+SHIFT+V

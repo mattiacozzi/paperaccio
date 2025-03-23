@@ -50,3 +50,6 @@ Password amministratore solitacorta.
 ## Struttura files
 
     /photos/library/[user]/[year]/[month]-[day]
+
+## Esportazione foto Google
+Usare il servizio "Google Takeout".
