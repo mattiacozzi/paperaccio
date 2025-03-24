@@ -1,4 +1,5 @@
 # COSE DA FARE
+- cambio batteria dell'UPS
 - impostare spegnimento automatico con UPS attivo
     - https://www.youtube.com/watch?v=Tjc5dzGkRCI  
     - https://www.thesmarthomebook.com/2022/09/02/setting-up-monitor-your-ups-proxmox-home-assistant/
