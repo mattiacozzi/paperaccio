@@ -104,4 +104,95 @@ Controllo la connessione con:
 
     upsc myUPS@localhost 
 
-Funziona, ma non vedo la carica della batteria! Sembra che la batteria sia morta.
+Messaggi ricevuti:
+
+    root@paperaccio:~# upsc myUPS@localhost
+    Init SSL without certificate database
+    battery.voltage: 13.70
+    device.type: ups
+    driver.name: nutdrv_qx
+    driver.parameter.pollfreq: 30
+    driver.parameter.pollinterval: 15
+    driver.parameter.port: auto
+    driver.parameter.productid: 0000
+    driver.parameter.synchronous: auto
+    driver.parameter.vendorid: 0001
+    driver.version: 2.8.0
+    driver.version.data: Q1 0.07
+    driver.version.internal: 0.32
+    driver.version.usb: libusb-1.0.26 (API: 0x1000109)
+    input.frequency: 50.1
+    input.voltage: 225.9
+    input.voltage.fault: 226.4
+    output.voltage: 225.9
+    ups.beeper.status: enabled
+    ups.delay.shutdown: 30
+    ups.delay.start: 180
+    ups.load: 3
+    ups.productid: 0000
+    ups.status: OL      ATTENZIONE A QUESTA LINEA!
+    ups.type: offline / line interactive
+    ups.vendorid: 0001
+
+Quando a batteria:
+
+    root@paperaccio:~# upsc myUPS@localhost
+    Init SSL without certificate database
+    battery.voltage: 13.80
+    device.type: ups
+    driver.name: nutdrv_qx
+    driver.parameter.pollfreq: 30
+    driver.parameter.pollinterval: 15
+    driver.parameter.port: auto
+    driver.parameter.productid: 0000
+    driver.parameter.synchronous: auto
+    driver.parameter.vendorid: 0001
+    driver.version: 2.8.0
+    driver.version.data: Q1 0.07
+    driver.version.internal: 0.32
+    driver.version.usb: libusb-1.0.26 (API: 0x1000109)
+    input.frequency: 50.1
+    input.voltage: 226.4
+    input.voltage.fault: 226.4
+    output.voltage: 226.4
+    ups.beeper.status: enabled
+    ups.delay.shutdown: 30
+    ups.delay.start: 180
+    ups.load: 3
+    ups.productid: 0000
+    ups.status: OB      ATTENZIONE A QUESTA LINEA!
+    ups.type: offline / line interactive
+    ups.vendorid: 0001
+
+
+Posso richiedere lo status dell'UPS con:
+
+    upsc myUPS@localhost ups.status
+
+o semplicemente con:
+
+    upsc myUPS ups.status
+
+Ottengo:
+
+    Init SSL without certificate database
+    OL
+
+oppure:
+
+    Init SSL without certificate database
+    OB
+
+## Spegnimento automatico
+### Fonti
+https://unix.stackexchange.com/questions/766747/nut-shutdown-script-does-not-run-when-ups-switches-to-battery-power-returned-1
+https://gist.github.com/peterlavelle/5e5adb42f2c8a017ee5879aa8647d1a5
+https://community.ipfire.org/t/nut-ups-howto-shut-down-client-after-2-min-on-battery/9096/2 !!!!!
+
+### Script
+File da modificare:
+
+    /etc/nut/upssched.conf
+
+
+    

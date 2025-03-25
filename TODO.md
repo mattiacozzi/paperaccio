@@ -1,5 +1,4 @@
 # COSE DA FARE
-- cambio batteria dell'UPS
 - impostare spegnimento automatico con UPS attivo
     - https://www.youtube.com/watch?v=Tjc5dzGkRCI  
     - https://www.thesmarthomebook.com/2022/09/02/setting-up-monitor-your-ups-proxmox-home-assistant/
@@ -23,6 +22,7 @@
     - auto backup?
 - spostare files
 - auto login ubuntu server?
+- <s>cambio batteria dell'UPS</s>
 - <s>pagina web con tutti i link per paperaccio</s>
 - <s>acquistare pezzi</s>
 - <s>impostare ip fisso</s>
