@@ -3,15 +3,12 @@
     - https://www.youtube.com/watch?v=Tjc5dzGkRCI  
     - https://www.thesmarthomebook.com/2022/09/02/setting-up-monitor-your-ups-proxmox-home-assistant/
     - creazione di uno script che spegne il server se il ping del router fallisce
-- mettere in ordine lo scaffale
-    - sistemazione cavi
-    - copertura con plexiglass
-    - led?
 - impostare accesso dall'esterno
     - tailscale? video pischello di youtube
     - https://community-scripts.github.io/ProxmoxVE/scripts?id=add-tailscale-lxc
 - impostare aMule
     - uso Docker
+    - finire di impostare lo storage del container (diverso da quello del LXC)
 - impostare qualche strumento interfaccia CLI
     - tipo https://github.com/gokcehan/lf
 - backup
@@ -23,6 +20,10 @@
 - spostare files
 - auto login ubuntu server?
 - <s>cambio batteria dell'UPS</s>
+- <s>mettere in ordine lo scaffale</s>
+    - sistemazione cavi
+    - copertura con plexiglass
+    - led
 - <s>pagina web con tutti i link per paperaccio</s>
 - <s>acquistare pezzi</s>
 - <s>impostare ip fisso</s>
