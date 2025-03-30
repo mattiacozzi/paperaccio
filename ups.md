@@ -1,3 +1,19 @@
+# Batteria
+
+## Dettagli UPS
+
+- Brand/Model: Safire UPS600VA-2
+- Capacity: 660 VA, 360 W
+- Input: 220 Vac, 50/60 Hz, 3.9 A max
+- Output: 220 Vac, 50/60 Hz
+- Battery: Dc 12 V/7 A Hx1
+- Sockets: 2x Schuko (CEE7/4)
+## Andamento della carica
+
+L'UPS ha tre livelli di batteria.
+
+Dopo aver staccato la corrente, con batteria nuova, scende da 2/3 dopo minuti. Scende a 1/3 dopo minuti.
+
 # Comunicazione di Proxmox con l'UPS
 
 ## Guide
@@ -71,7 +87,7 @@ Un'unica linea:
 
     LISTEN 0.0.0.0 3493
 
-L'IP 0.0.0.0 serve per "ascoltare" da tutti gli indirizzi IP, non solo dall server (altrimenti sarebbe stato 127.0.0.1).
+L'IP 0.0.0.0 serve per "ascoltare" da tutti gli indirizzi IP, non solo dal server (altrimenti sarebbe stato 127.0.0.1).
 
 Modifico:
 
