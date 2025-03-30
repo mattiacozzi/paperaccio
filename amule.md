@@ -43,6 +43,18 @@ Cartella per i download:
 
 Pass webui: amuleweb-passwd
 
+
+## Avvio automatico
+Per avviare in automatico "docker start amule" uso un crontab, come descritto in https://www.simplified.guide/linux/automatically-run-program-on-startup#running-a-program-automatically-on-linux-startup-via-rclocal
+
+Comando:
+
+    crontab -e
+
+Scelgo nano e al file aggiungo
+
+    @reboot docker start amule
+
 # Bind mount
 https://docs.docker.com/engine/storage/bind-mounts/
 
