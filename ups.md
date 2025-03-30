@@ -8,11 +8,10 @@
 - Output: 220 Vac, 50/60 Hz
 - Battery: Dc 12 V/7 A Hx1
 - Sockets: 2x Schuko (CEE7/4)
+
 ## Andamento della carica
 
-L'UPS ha tre livelli di batteria.
-
-Dopo aver staccato la corrente, con batteria nuova, scende da 2/3 dopo minuti. Scende a 1/3 dopo minuti.
+L'UPS ha tre livelli di batteria. Dopo aver staccato la corrente, con batteria nuova, la prima tacca dura più di 25 minuti.
 
 # Comunicazione di Proxmox con l'UPS
 
