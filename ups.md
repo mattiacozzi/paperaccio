@@ -204,10 +204,68 @@ https://unix.stackexchange.com/questions/766747/nut-shutdown-script-does-not-run
 https://gist.github.com/peterlavelle/5e5adb42f2c8a017ee5879aa8647d1a5
 https://community.ipfire.org/t/nut-ups-howto-shut-down-client-after-2-min-on-battery/9096/2 !!!!!
 
+GUIDA UFFICIALE, LEGGI!
+https://networkupstools.org/docs/user-manual.chunked/Advanced_usage_scheduling_notes.html
+
 ### Script
-File da modificare:
+Modifico upsmon.conf con il comando da usare per lo spegnimento automatico:
 
-    /etc/nut/upssched.conf
+    nano /etc/nut/upsmon.conf
+
+e aggiungo:
+
+    SHUTDOWNCMD "/sbin/shutdown -h +0"
 
 
-    
+File da modificare per gli eventi:
+
+    nano /etc/nut/upssched.conf
+
+Contenuto di /etc/nut/upssched-cmd, ovvero CMDSCRIPT
+
+    #!/bin/sh
+    case $1 in          #$1 indica l'argomento che è stato passato allo script!
+        onbatt)
+            logger -t upssched-cmd "UPS running on battery"
+            ;;
+        earlyshutdown)
+            logger -t upssched-cmd "UPS on battery too long, early shutdown" #fai un log con tag "upssched-cmd" che dice "..."
+            /usr/sbin/upsmon -c fsd     #FORCE SHUTDOWN, funziona!
+            ;;
+        shutdowncritical)
+            logger -t upssched-cmd "UPS on battery critical, forced shutdown"
+            /usr/sbin/upsmon -c fsd
+            ;;
+        upsgone)
+            logger -t upssched-cmd "UPS has been gone too long, can't reach"
+            ;;
+        *)
+            logger -t upssched-cmd "Unrecognized command: $1"
+            ;;
+    esac
+
+Per vedere i log di sistema in ordine inverso:
+
+    journalctl -r
+
+Early Shutdowns
+One thing that gets requested a lot is early shutdowns in upsmon. With upssched, you can now have this functionality. Just set a timer for some length of time at ONBATT which will invoke a shutdown command if it elapses. Just be sure to cancel this timer if you go back ONLINE before then.
+
+The best way to do this is to use the upsmon callback feature. You can make upsmon set the "forced shutdown" (FSD) flag on the upsd so your secondary systems shut down early too. Just do something like this in your CMDSCRIPT:
+
+/sbin/upsmon -c fsd
+
+Note
+the path to upsmon must be provided. The default for an installation built from sources is /usr/local/ups (so /usr/local/ups/sbin/upsmon), while packaged installations will generally comply to FHS — Filesystem Hierarchy Standard (so /sbin/upsmon).
+
+It’s not a good idea to call your system’s shutdown routine directly from the CMDSCRIPT, since there’s no synchronization with the secondary systems hooked to the same UPS. FSD is the primary’s way of saying "we’re shutting down now like it or not, so you’d better get ready".
+
+
+### Comandi
+Spegnimento tra N minuti:
+
+    /sbin/shutdown -h +N
+
+Annulla lo spegnimento programmato:
+
+    shutdown -c
