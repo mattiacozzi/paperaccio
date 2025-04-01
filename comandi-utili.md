@@ -18,6 +18,10 @@ Orario
 
     shutdown -P 3:00
 
+Annulla lo spegnimento programmato:
+
+    shutdown -c
+
 ## Log di sistema
 Per mostrare il log in ordine inverso (dai log più recenti ai più vecchi):
 

@@ -1,0 +1,23 @@
+#!/bin/sh
+ case $1 in
+       onbatt)
+          logger -t upssched-cmd "L'UPS sta funzionando a batteria!"
+          ;;
+       earlyshutdown)
+          logger -t upssched-cmd "Tempo massimo a batteria raggiunto, spengo Paperaccio!"
+          /usr/sbin/upsmon -c fsd
+          ;;
+       online)
+          logger -t upssched-cmd "L'UPS è tornato a funzionare con la corrente!"
+          ;;
+       shutdowncritical)
+          logger -t upssched-cmd "UPS on battery critical, forced shutdown"
+          /usr/sbin/upsmon -c fsd
+          ;;
+       upsgone)
+          logger -t upssched-cmd "UPS has been gone too long, can't reach"
+          ;;
+       *)
+          logger -t upssched-cmd "Unrecognized command: $1"
+          ;;
+ esac

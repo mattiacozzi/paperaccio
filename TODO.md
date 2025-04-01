@@ -1,10 +1,5 @@
 # COSE DA FARE
-- rendere più leggibile il file ups.md
 - scrivere sugli hdd sdb e sdc per identificarli
-- impostare spegnimento automatico con UPS attivo
-    - https://www.youtube.com/watch?v=Tjc5dzGkRCI  
-    - https://www.thesmarthomebook.com/2022/09/02/setting-up-monitor-your-ups-proxmox-home-assistant/
-    - creazione di uno script che spegne il server se il ping del router fallisce
 - impostare accesso dall'esterno
     - tailscale? video pischello di youtube
     - https://community-scripts.github.io/ProxmoxVE/scripts?id=add-tailscale-lxc
@@ -23,6 +18,8 @@
 - spostare files
 - auto login ubuntu server?
 - <s>cambio batteria dell'UPS</s>
+- <s>impostare spegnimento automatico con UPS attivo</s>
+- <s>rendere più leggibile il file ups.md</s>
 - <s>mettere in ordine lo scaffale</s>
     - sistemazione cavi
     - copertura con plexiglass
