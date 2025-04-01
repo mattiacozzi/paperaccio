@@ -1,4 +1,5 @@
 # COSE DA FARE
+- rendere più leggibile il file ups.md
 - scrivere sugli hdd sdb e sdc per identificarli
 - impostare spegnimento automatico con UPS attivo
     - https://www.youtube.com/watch?v=Tjc5dzGkRCI  
