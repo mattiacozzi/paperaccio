@@ -18,3 +18,16 @@ Orario
 
     shutdown -P 3:00
 
+## Log di sistema
+Per mostrare il log in ordine inverso (dai log più recenti ai più vecchi):
+
+    journalctl -r
+
+## Stato UPS
+Sintetico:
+
+    upsc myUPS@localhost ups.status
+
+Completo
+
+    upsc myUPS@localhost
