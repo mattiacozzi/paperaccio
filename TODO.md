@@ -1,5 +1,4 @@
 # COSE DA FARE
-- scrivere sugli hdd sdb e sdc per identificarli
 - impostare accesso dall'esterno
     - tailscale? video pischello di youtube
     - https://community-scripts.github.io/ProxmoxVE/scripts?id=add-tailscale-lxc
@@ -15,8 +14,14 @@
     - <s>LXC</s>
     - braineater
     - auto backup?
+    - proxmox backup server!
 - spostare files
+    - <s>foto</s>
+    - <s>film</s>
+    - <s>serie tv</s>
+    - musica?
 - auto login ubuntu server?
+- <s>scrivere sugli hdd sdb e sdc per identificarli</s>
 - <s>cambio batteria dell'UPS</s>
 - <s>impostare spegnimento automatico con UPS attivo</s>
 - <s>rendere più leggibile il file ups.md</s>
