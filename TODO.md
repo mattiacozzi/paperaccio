@@ -1,5 +1,6 @@
 # COSE DA FARE
 - impostare accesso dall'esterno
+    - lo voglio fare?
     - tailscale? video pischello di youtube
     - https://community-scripts.github.io/ProxmoxVE/scripts?id=add-tailscale-lxc
 - studiare NextCloud e OpenVPN
