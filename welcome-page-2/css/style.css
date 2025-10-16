@@ -1,0 +1,16 @@
+h1, h2 {
+    text-align: center; color: #07a5e9; 
+}
+h1 {
+    font-family: lan-server;
+    font-size: 6em;
+}
+h2 {
+    font-size:xx-large;
+}
+a {
+    color: #0281b8; text-decoration: none; font-weight: bold; font-size: large;
+}
+.padded-top {
+    padding: 50px 0 0 0;
+}

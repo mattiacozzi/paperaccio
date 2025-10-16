@@ -1,5 +1,27 @@
-# Appunti su mycrob
+# Appunti per PVE
 
+Usare la procedura di installazione via terminal ui, quella grafica non viene visualizzata correttamente (taglio della parte bassa).
+
+## IP lan-server
+
+    192.168.1.200/24
+
+
+## Comando per copiare da locale a remoto
+
+    scp -r /home/mattia/Desktop/welcome-page mattia@192.168.1.200:/home/mattia
+
+e poi, sul server:
+
+    sudo mv /home/mattia/welcome-page /var/www/html
+
+rinomina la cartella:
+
+    cd /var/www/html
+    
+    sudo mv welcome-page/ home/
+
+# Appunti per EndeavourOS+Sway
 OS: EndeavourOS
 WM: sway    https://www.lorenzobettini.it/2024/10/sway-in-arch-linux-getting-started/
 
