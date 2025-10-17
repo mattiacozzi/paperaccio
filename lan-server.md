@@ -1,6 +1,8 @@
-# Appunti per PVE
+# Debian LAN-server
 
-Usare la procedura di installazione via terminal ui, quella grafica non viene visualizzata correttamente (taglio della parte bassa).
+## TO DO
+
+
 
 ## IP lan-server
 
@@ -20,6 +22,28 @@ rinomina la cartella:
     cd /var/www/html
     
     sudo mv welcome-page/ home/
+
+## Impostazione di un server FTP
+
+Usare `vsftpd`:
+    - https://wiki.debian.org/vsftpd#User_access_control
+    - https://security.appspot.com/vsftpd.html
+    - http://vsftpd.beasts.org/vsftpd_conf.html
+    - https://askubuntu.com/questions/354178/what-is-ftp-username-and-password-for-vsftpd
+
+
+## Programmi utili
+Gestione file:
+    - `yazi`
+    - 
+
+Network manager
+    - https://networkmanager.dev/docs/api/latest/nmcli.html https://man.archlinux.org/man/nmcli-examples.7.en
+    - https://docs.oracle.com/it/learn/nmcli_ip_linux8/index.html
+    - 
+
+
+
 
 # Appunti per EndeavourOS+Sway
 OS: EndeavourOS
