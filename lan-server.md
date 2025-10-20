@@ -8,8 +8,17 @@
 - IP: `192.168.1.200/24`
 - Access Point: NetGear **QUALCOSA** `192.168.1.254`
 
+---
+
 ## SSH
-Installare SSH **IMPO!!! aggiungere guida!**
+
+Per installare il server:
+
+    apt install openssh-server
+
+Fonte: [debian wiki](https://wiki.debian.org/SSH).
+
+Per collegarsi al server:
 
     ssh mattia@192.168.1.200
 
@@ -17,26 +26,50 @@ Se l'utente è lo stesso:
 
     ssh 192.168.1.200
 
+---
+
 ## Lista di pacchetti utili
 
-    sudo apt install sudo git unzip rsync 
+All'inizio conviene installare alcuni pacchetti, se non già presenti:
+
+    sudo apt install sudo git unzip rsync wget bat
 
 Forse:
 
     python3
     mysql-common
 
-## Apache
+## Apache + MariaDB
 
-## MariaDB
+Seguire la guida [qui](https://www.youtube.com/watch?v=d7Kkbyb1TjQ).
 
-    mariadb-common
+[Guida specifica mariadb](https://www.youtube.com/watch?v=sfJe5tWtsaA).
 
-Recupera video (?) per lo script di messa in sicurezza del database
+    sudo apt update
+    sudo apt install mariadb-server
+
+Per avviare il server:
+
+    sudo systemctl start mysql
+
+Per eseguire lo script post installazione:
+
+    sudo mysql_secure_installation
+
+> Il file di configurazione di apache non si chiama httpd conf in Debian. Si trova in `/etc/apache2/apache2.conf`. Leggere il file con attenzione.
+---
 
 ## phpMyAdmin
 
+Segui la guida [qui](https://iegri.com/installare-phpmyadmin-su-debian/).
+
+---
+
+
 ## HTTPS
+
+
+---
 
 ## pihole
 
@@ -72,6 +105,8 @@ Se non ho segnato la pass di primo accesso:
 
 L'interfaccia web di pihole è in `/var/www/html/admin/`.
 
+---
+
 ## Cockpit
 
 Semplicemente:
@@ -80,7 +115,12 @@ Semplicemente:
 
 Nel dettaglio [qui](https://cockpit-project.org/running#debian).
 
+---
+
 ## Copiare da locale a remoto
+### scp
+
+Posso usare `scp`:
 
     scp -r /home/mattia/Desktop/welcome-page mattia@192.168.1.200:/home/mattia
 
@@ -92,6 +132,12 @@ rinomina la cartella:
 
     cd /var/www/html
     sudo mv welcome-page/ home/
+
+### rsync
+
+Uno strumento più potente è `rsync`, tra i [pacchetti raccomandati](#lista-di-pacchetti-utili).
+
+---
 
 ## Server FTP 
 
@@ -138,10 +184,11 @@ Per accesso, porta vuota oppure 20, 21.
 
  Per impostare correttamente i permessi:
 
-    cd /var/www/
-    sudo chown -R www-data: html/
-    sudo find html -type f -exec chmod 664 {} + -o -type d -exec chmod 775 {} +
-
+```bash
+cd /var/www/
+sudo chown -R www-data: html/
+sudo find html -type f -exec chmod 664 {} + -o -type d -exec chmod 775 {} +
+```
 assegna i permessi 664 ai file e i permessi 775 alle cartelle in html. capire meglio!
 
 Altre fonti:
@@ -150,23 +197,47 @@ Altre fonti:
 - http://vsftpd.beasts.org/vsftpd_conf.html
 - https://askubuntu.com/questions/354178/what-is-ftp-username-and-password-for-vsftpd
 
+---
+
+## Convertire file da markdown a html
+
+Usare `pandoc`:
+
+    sudo apt install pandoc
+
+Comando di esempio per convertire tutti gli md in una cartella in corrispondenti html:
+
+```bash
+for i in *.md ; do echo "$i.md --> $i.html " && pandoc -s $i -o $i.html ; done
+```
+Migliorabile, ad esempio togliendo l'estensione .md nel salvare il file html.
+
+Fonte: [itsfoss.com](https://itsfoss.com/convert-markdown-files/).
+
+---
+
 ## Comandi interessanti
 
-Per vedere gli **ultimi pacchetti installati**:
+### Ultimi pacchetti installati
 
-    ls -tl /var/lib/dpkg/info/*.list
+Per vedere gli ultimi pacchetti installati:
+
+```bash
+ls -tl /var/lib/dpkg/info/*.list
+```
 
 Per vedere gli ultimi 10:
 
-    ls -tl /var/lib/dpkg/info/*.list | head -n 10
+```bash
+ls -tl /var/lib/dpkg/info/*.list | head -n 10
+```
 
 [Fonte](https://unix.stackexchange.com/questions/510811/how-to-uninstall-or-remove-recently-installed-packages)
 
 
+### ...
 
-
-
-https://stackoverflow.com/questions/49095046/where-is-httpd-conf
+---
 
 ## Programmi utili
 
@@ -197,6 +268,7 @@ Scorciatoie:
 - `.` toggle file nascosti
 
 Opzioni interessanti:
+
 - `n` start in type to nav mode
 - `o` open files only on Enter key
 - `d` detail mode
