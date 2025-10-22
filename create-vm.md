@@ -12,7 +12,7 @@
 - Scegliere la ISO
 - In "System", abilitare Qemu agent
 - In "Hard disk", abilitare "Discard" se il disco su cui stiamo creando la VM è una SSD. Se è un disco meccanico, non selezionarlo. 
-- vmbr0 significa VM Bridge
+- `vmbr0` significa VM Bridge
 
 ## Installare il SO
 - Avviare la VM
@@ -23,37 +23,40 @@
 - Impostare, se serve, un IP fisso per la VM
 
 ## SSH
-- Dopo l'installazione, aprire un terminale in una macchina in rete ed accedere alla VM con SSH
-- Comando:
+
+Dopo l'installazione, aprire un terminale in una macchina in rete ed accedere alla VM con SSH
 
         ssh nomeUtenteVM@VMipAddress
-    Esempio:
+    
+Esempio:
 
         ssh mattia@192.168.1.242
 
-- Per uscire da ssh:
+Per uscire da ssh:
 
         exit
-     Oppure CTRL+D
+     
+Oppure `CTRL+D`.
 
 ## Aggiornare i pacchetti della VM
-- Debian based:
+
+Debian based:
         
         sudo apt update && sudo apt dist-upgrade
 
 ## QEMU Guest Agent
-- Serve a comunicare lo stato della VM a PVE
+
+- Serve a comunicare lo stato della VM a PVE.
 - Comando Debian based:
 
         sudo apt install qemu-guest-agent
 
-- Abilito in guest agent in PVE:
-    - Apro la VM in PVE e abilito nelle Opzioni il QEMU Guest Agent
-- Avvio il guest agent
+- Abilito in guest agent in PVE. Apro la VM in PVE e abilito nelle Opzioni il QEMU Guest Agent.
+- Avvio il guest agent:
 
         sudo systemctl start qemu-guest-agent.service
 
-- Controllo se sta funzionando
+- Controllo se sta funzionando:
 
         systemctl status qemu-guest-agent.service
 

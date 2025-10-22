@@ -1,20 +1,16 @@
 # LAN-server
 
 ## Info
-- OS: Debian 13 Trixie
-- CPU: Intel Atom N455@1.66GHz
-- Memory: 2 Gib
-- Disk: 128 GB SSD
+- OS: *Debian 13 Trixie*
+- CPU: *Intel Atom N455@1.66GHz*
+- Memory: *2 GiB*
+- Disk: *128 GB SSD*
 - IP: `192.168.1.200/24`
-- Access Point: NetGear **QUALCOSA** `192.168.1.254`
+- Access Point: *NetGear **QUALCOSA*** `192.168.1.254`
 
 ## TODO
 - [ ] impostare openEMR
-- [ ] scrivere guida pacchetti utili
-- [ ] scrivere guida apache
-- [ ] scrivere guida mariadb
 - [ ] scrivere guida https
-- [ ] scrivere guida phpmyadmin
 - [ ] scrivere guida cockpit
 - [ ] scrivere guida scp
 - [ ] scrivere guida rsync
@@ -26,64 +22,189 @@
 - [ ] controllare pihole
 - [ ] impostare network manager
 - [ ] fare un backup di tutto (timeshift?)
+- [x] scrivere guida pacchetti utili
+- [x] scrivere guida apache
+- [x] scrivere guida mariadb
+- [x] scrivere guida phpmyadmin
 
 ---
 
 ## SSH
 
+Fonte: [debian wiki](https://wiki.debian.org/SSH).
+
 Per installare il server:
 
     apt install openssh-server
-
-Fonte: [debian wiki](https://wiki.debian.org/SSH).
 
 Per collegarsi al server:
 
     ssh mattia@192.168.1.200
 
-Se l'utente è lo stesso:
+Se l'utente è lo stesso basta:
 
     ssh 192.168.1.200
 
 ---
 
-## Lista di pacchetti utili
+## SUDO
+
+Mi autentico come root e installo `sudo`:
+
+    su -l # per avere tutta la lista dei binari e poter eseguire adduser
+    apt install sudo
+
+Aggiungo l'utente normale al gruppo `sudo`:
+
+    adduser mattia sudo
+
+Torno utente normale (`exit` o `CTRL+D`), **logout** per applicare la modifica.
+
+## Pacchetti utili
 
 All'inizio conviene installare alcuni pacchetti, se non già presenti:
 
-    sudo apt install sudo git unzip rsync wget bat
+    sudo apt install git unzip rsync curl bat
 
-Forse:
+---
 
-    python3
-    mysql-common
+## LAMP Stack
 
-## Apache + MariaDB
+Guida video: [LAMP Stack](https://www.youtube.com/watch?v=d7Kkbyb1TjQ).
 
-Seguire la guida [qui](https://www.youtube.com/watch?v=d7Kkbyb1TjQ).
+### Linux
 
-[Guida specifica mariadb](https://www.youtube.com/watch?v=sfJe5tWtsaA).
+Partendo da una nuova installazione di Debian **con SSH**, aggiorniamo i repository e se necessario aggiorniamo i pacchetti:
 
     sudo apt update
+    sudo apt upgrade
+
+### Apache
+
+Installo `apache2` e le sue dipendenze:
+
+    sudo apt install apache2
+
+Controllo se Apache sta funzionando:
+
+    sudo systemctl status apache2.service
+
+`enabled` mi informa che Apache si attiva al boot. `q` per uscire.
+
+Per controllare che funzioni, posso anche visitare con un browser l'indirizzo IP della macchina (`ip a` per avere tutte le info sulla connessione). Dovrei vedere la pagina di benvenuto di Apache.
+
+Vedi anche come gestire l'[upload di grandi files](#upload-database-precedenti).
+
+#### Firewall
+
+Se Apache funziona, potrebbe essere necessario aprire le porte del firewall `ufw` (**non preinstallato** in Debian 13):
+
+    sudo ufw status
+
+Per aprire le porte per HTTP (80) e HTTPS (443) devo aggiungere delle regole al firewall.
+
+Per vedere i servizi possibili:
+
+    sudo ufw app list
+
+E poi:
+
+    sudo ufw allow Apache # se sono due parole uso le "virgolette così"
+
+Ricontrollo lo status per confermare che Apache può attraversare il firewall.
+
+### MariaDB
+
+MariaDB è un fork completamente open source di MySQL. Vedi qui una [guida video](https://www.youtube.com/watch?v=sfJe5tWtsaA).
+
+Se non è installato (`mysql --version`) installo il server:
+
     sudo apt install mariadb-server
 
 Per avviare il server:
 
-    sudo systemctl start mysql
+    sudo systemctl start mysql.service
+
+Controllo dello stato del server:
+
+    sudo systemctl status mysql.service
 
 Per eseguire lo script post installazione:
 
     sudo mysql_secure_installation
 
-> Il file di configurazione di apache non si chiama httpd conf in Debian. Si trova in `/etc/apache2/apache2.conf`. Leggere il file con attenzione.
+> Il file di configurazione di Apache non si chiama `httpd.conf` in Debian, come è invece ad esempio per XAMPP. Si trova in `/etc/apache2/apache2.conf`. Leggere il file con attenzione.
+
+Digitando `mysql` apro il prompt SQL di MariaDB.
+
+### PHP
+
+Guida [qui](https://computingforgeeks.com/how-to-install-php-8-2-on-debian/).
+
+Installo:
+
+    sudo apt install php php-mysql
+
+Assicurarsi che venga installato anche `libapache2-mod-php8.4` per comunicare con il server web.
+
+Abilito, se già non lo è, il modulo Apache per processare codice PHP:
+
+    sudo a2enmod php8.4
+
+Riavvio il server Apache:
+
+    sudo systemctl restart apache2.service
+
+### phpMyAdmin
+
+Guida [qui](https://iegri.com/installare-phpmyadmin-su-debian/).
+
+Mi posiziono nella cartella che preferisco e scarico phpMyAdmin:
+
+    wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
+
+Entro nel *docroot* di Apache e creo la cartella per PMA:
+
+    sudo mkdir /var/www/html/phpmyadmin
+
+Estraggo l'archivio nella cartella creata:
+
+    sudo tar xvf phpMyAdmin-latest-all-languages.tar.gz --strip-components=1 -C /var/www/html/phpmyadmin
+
+Creo il file di configurazione a partire da quello di esempio:
+
+    sudo cp /var/www/html/phpmyadmin/config.sample.inc.php /var/www/html/phpmyadmin/config.inc.php
+
+Modifico il file:
+
+    sudo nano /var/www/html/phpmyadmin/config.inc.php
+    
+Cerco la stringa:
+
+    $cfg[‘blowfish_secret’] = ''
+
+e inserisco una [password complessa](https://www.motorsportdiesel.com/tools/blowfish-salt/pma/).
+
+Devo fare in modo che la cartella `phpmyadmin` sia di proprietà dell’utente `www-data` (che è l'owner dei servizi httpd) e che il file modificato sia leggibile dall'utente proprietario.
+
+    sudo chown -R www-data:www-data /var/www/html/phpmyadmin
+    sudo chmod 660 /var/www/html/phpmyadmin/config.inc.php
+
+> Leggi [qui](https://supporthost.com/it/comando-chown-linux/) e [qui](https://www.andreaminini.com/linux/come-cambiare-i-permessi-su-linux).
+
+Riavvio Apache:
+
+    sudo systemctl restart apache2.service
+
+Controllo se ci sono errori in Apache e apro la pagina:
+
+    http://IP-del-server/phpmyadmin
+
+Se mi dice che manca l'estensione `php-mysqli` risolvo installando il pacchetto `php-mysql`.
+
+> Dei temi sono disponibili [qui](https://www.phpmyadmin.net/themes/). `unzip` l'archivio e lo sposto nella cartella `themes` di phpmyamin.
+
 ---
-
-## phpMyAdmin
-
-Segui la guida [qui](https://iegri.com/installare-phpmyadmin-su-debian/).
-
----
-
 
 ## HTTPS
 
@@ -186,7 +307,7 @@ cd /var/www/
 sudo chown -R www-data: html/
 sudo find html -type f -exec chmod 664 {} + -o -type d -exec chmod 775 {} +
 ```
-assegna i permessi 664 ai file e i permessi 775 alle cartelle in html. capire meglio!
+assegna i permessi 664 ai file e i permessi 775 alle cartelle in html. capire meglio! https://www.andreaminini.com/linux/permessi-numerici-su-linux e altre guide sul sito, tipo https://www.andreaminini.com/linux/come-cambiare-i-permessi-su-linux e anche https://supporthost.com/it/comando-chown-linux/
 
 Altre fonti:
 - https://wiki.debian.org/vsftpd#User_access_control
@@ -235,11 +356,16 @@ rinomina la cartella:
 
 ### rsync
 
-Uno strumento più potente è `rsync`, tra i [pacchetti raccomandati](#lista-di-pacchetti-utili).
+Uno strumento più potente è `rsync`, tra i [pacchetti raccomandati](#acchetti-utili).
+
+Video:
+- [LearnLinuxTV](youtube.com/watch?v=KG78O53u8rY&pp=ygUFcnN5bmPSBwkJBgoBhyohjO8%3D)
+- [bread](https://www.youtube.com/watch?v=eifQI5uD6VQ&t=447s)
+- [Veronica](https://www.youtube.com/watch?v=QKCIi-NxJEo)
 
 ### sftp
 
-La home dell'utente ftp è accessibile anche da un file manager tramite `sftp`:
+La home dell'utente ftp è accessibile anche da un file manager grafico tramite `sftp`:
 
     sftp://192.168.1.200
 
@@ -256,6 +382,7 @@ Comando di esempio per convertire tutti gli md in una cartella in corrispondenti
 ```bash
 for i in *.md ; do echo "$i.md --> $i.html " && pandoc -s $i -o $i.html ; done
 ```
+
 Migliorabile, ad esempio togliendo l'estensione .md nel salvare il file html.
 
 Fonte: [itsfoss.com](https://itsfoss.com/convert-markdown-files/).
@@ -295,6 +422,8 @@ Contenuto di `~/.nanorc`:
     set mouse
     set softwrap
 
+Posso impostare lo stesso anche per l'utente root creando il file in `/root/.nanorc`.
+
 Per avere le scorciatoie moderne, in `~/.profile`:
 
         export EDITOR="nano --modernbindings"
@@ -325,6 +454,7 @@ Per attivarle, in `~/.profile`:
         export NNN_OPTS="nodU"
 
 **Network manager**
+
 - https://networkmanager.dev/docs/api/latest/nmcli.html https://man.archlinux.org/man/nmcli-examples.7.en
 - https://docs.oracle.com/it/learn/nmcli_ip_linux8/index.html
 
@@ -339,7 +469,7 @@ Installazione delle dipendenze ([fonte](https://www.open-emr.org/wiki/index.php/
 
     sudo apt-get install apache2 mariadb-server libapache2-mod-php libtiff-tools php php-mysql php-cli php-gd php-xsl php-curl php-soap php-json php-gettext imagemagick php-mbstring php-zip php-ldap
 
-Non trova candidati per `php-gettext`. Provo a installare `php-gettext-languages`.
+Molte dovrebbero essere già installate. Non trova candidati per `php-gettext`: provo a installare `php-gettext-languages`, non credo sia giusto ma poi l'installazione parte comunque.
 
 Riavvia i server:
 
@@ -376,7 +506,7 @@ Prima di iniziare l'installazione posso caricare il backup di un database già e
 
 Prima di iniziare l'installazione, provo a caricare il vecchio database (+backup) sul server. L'ho salvato come unico file sql, molto grande.
 
-Se necessario, bisogna aumentare il **limite massimo di upload** e post di apache, che ha effetto sul limite mostrato da phpmyadmin. Modifico `php.ini`:
+Se necessario, bisogna aumentare il **limite massimo di upload** e post di Apache, che ha effetto sul limite mostrato da phpmyadmin. Modifico `php.ini`:
 
     sudo nano /etc/php/8.4/apache2/php.ini
 
@@ -441,4 +571,4 @@ La procedura guidata è raggiungibile da [192.168.1.200/openemr](192.168.1.200/o
 
         [IP-address]/openemr
 
-1. Per importare i dati degli utenti, importo da PHPmyAdmin nella tabella `patient_data` il file `patient-dump.sql`.
+1. Per importare solo i dati degli utenti da altri database, importo da phpMyAdmin nella tabella `patient_data` il file `patient-dump.sql`.
