@@ -6,34 +6,32 @@
 - Memory: *2 GiB*
 - Disk: *128 GB SSD*
 - IP: `192.168.1.200/24`
-- Access Point: *NetGear **QUALCOSA*** `192.168.1.254`
+- Access Point: *NetGear **QUALCOSA*** @ `192.168.1.254`
 
 ## TODO
 - [ ] impostare openEMR
-- [ ] scrivere guida https
-- [ ] scrivere guida cockpit
+- [ ] finire guida openEMR
 - [ ] scrivere guida scp
 - [ ] scrivere guida rsync
+- [ ] scrivere guida backup (backup-manager)
 - [ ] capire la questione dei permessi di /var/www/html/
-- [ ] scrivere guida openEMR
 - [ ] aggiornare materiali.html
 - [ ] aggiornare risorse.html
-- [ ] gestione schermo
 - [ ] controllare pihole
-- [ ] impostare network manager
-- [ ] fare un backup di tutto (timeshift?)
+- [x] gestione schermo
+- [x] scrivere guida cockpit
 - [x] scrivere guida pacchetti utili
 - [x] scrivere guida apache
 - [x] scrivere guida mariadb
 - [x] scrivere guida phpmyadmin
 
----
+## Impostazione iniziale
 
-## SSH
+### SSH
 
 Fonte: [debian wiki](https://wiki.debian.org/SSH).
 
-Per installare il server:
+Per installare il server (nel caso non lo avessi fatto durante l'installazione):
 
     apt install openssh-server
 
@@ -45,9 +43,7 @@ Se l'utente è lo stesso basta:
 
     ssh 192.168.1.200
 
----
-
-## SUDO
+### SUDO
 
 Mi autentico come root e installo `sudo`:
 
@@ -60,13 +56,26 @@ Aggiungo l'utente normale al gruppo `sudo`:
 
 Torno utente normale (`exit` o `CTRL+D`), **logout** per applicare la modifica.
 
-## Pacchetti utili
+### Pacchetti utili
 
 All'inizio conviene installare alcuni pacchetti, se non già presenti:
 
     sudo apt install git unzip rsync curl bat
 
----
+### Gestione schermo
+
+Voglio fare in modo che il portatile non vada in sospensione con lo schermo chiuso. Devo modificare la configurazione di `logind`.
+
+    sudo nano /etc/systemd/logind.conf
+
+Modifico `HandleLidSwitch`, decommento e imposto `ignore` invece di `suspend`. Modifico anche:
+
+    HandleLidSwitchExternalPower=ignore
+    HandleLidSwitchDocked=ignore
+
+Salvo e riavvio `systemd-logind`:
+
+    sudo systemctl restart systemd-logind
 
 ## LAMP Stack
 
@@ -204,14 +213,11 @@ Se mi dice che manca l'estensione `php-mysqli` risolvo installando il pacchetto 
 
 > Dei **temi** sono disponibili [qui](https://www.phpmyadmin.net/themes/). `unzip` l'archivio e lo sposto nella cartella `themes` di PMA.
 
----
-
-## HTTPS
 
 
----
+## Altri strumenti
 
-## pihole
+### pihole
 
 Installazione di base:
 
@@ -245,19 +251,24 @@ Se non ho segnato la pass di primo accesso:
 
 L'interfaccia web di pihole è in `/var/www/html/admin/`.
 
----
 
-## Cockpit
+### Cockpit
 
 Semplicemente:
 
     sudo apt install cockpit
 
-Nel dettaglio [qui](https://cockpit-project.org/running#debian).
+> Tra le dipendenze c'è `network-manager`.
 
----
+L'interfaccia web è disponibile su:
 
-## Server FTP 
+    http://[IP-del-server]:9090
+
+Nome utente e password sono quell'utente normale sul server.
+
+Nel dettaglio [qui](https://cockpit-project.org/running#debian) per la spiegazione sui backports (letteralmente porting all'indietro delle nuove versioni dei pacchetti, contenute in Debian testing).
+
+### Server FTP 
 
 Usare `vsftpd` ([video](https://www.youtube.com/watch?v=t50UfbGvWhw)).
 
@@ -333,7 +344,11 @@ Make sure your FTP service either:
 
 - The user the FTP server runs as is part of the www-data group.
 
----
+### Backup
+
+https://github.com/sukria/Backup-Manager
+
+
 
 ## Copiare file sul server
 
@@ -369,25 +384,7 @@ La home dell'utente ftp è accessibile anche da un file manager grafico tramite 
 
     sftp://192.168.1.200
 
----
 
-## Convertire file da markdown a html
-
-Usare `pandoc`:
-
-    sudo apt install pandoc
-
-Comando di esempio per convertire tutti gli md in una cartella in corrispondenti html:
-
-```bash
-for i in *.md ; do echo "$i.md --> $i.html " && pandoc -s $i -o $i.html ; done
-```
-
-Migliorabile, ad esempio togliendo l'estensione .md nel salvare il file html.
-
-Fonte: [itsfoss.com](https://itsfoss.com/convert-markdown-files/).
-
----
 
 ## Comandi interessanti
 
@@ -410,7 +407,7 @@ ls -tl /var/lib/dpkg/info/*.list | head -n 10
 
 ### ...
 
----
+
 
 ## Programmi utili
 
@@ -453,11 +450,21 @@ Per attivarle, in `~/.profile`:
 
         export NNN_OPTS="nodU"
 
-**Network manager**
+**pandoc**
 
-- https://networkmanager.dev/docs/api/latest/nmcli.html https://man.archlinux.org/man/nmcli-examples.7.en
-- https://docs.oracle.com/it/learn/nmcli_ip_linux8/index.html
+Permette di convertire da md a pdf.
 
+    sudo apt install pandoc
+
+Comando di esempio per convertire tutti gli md in una cartella in corrispondenti html:
+
+```bash
+for i in *.md ; do echo "$i.md --> $i.html " && pandoc -s $i -o $i.html ; done
+```
+
+Migliorabile, ad esempio togliendo l'estensione .md nel salvare il file html.
+
+Fonte: [itsfoss.com](https://itsfoss.com/convert-markdown-files/).
 
 ## openEMR
 
@@ -469,7 +476,7 @@ Installazione delle dipendenze ([fonte](https://www.open-emr.org/wiki/index.php/
 
     sudo apt-get install apache2 mariadb-server libapache2-mod-php libtiff-tools php php-mysql php-cli php-gd php-xsl php-curl php-soap php-json php-gettext imagemagick php-mbstring php-zip php-ldap
 
-Molte dovrebbero essere già installate. Non trova candidati per `php-gettext`: provo a installare `php-gettext-languages`, non credo sia giusto ma poi l'installazione parte comunque.
+Molte dovrebbero essere già installate. Non trova candidati per `php-gettext`: provo a installare `php-gettext-languages`, non credo sia giusto ma poi l'installazione parte comunque (in una pagina non correlata viene citato insieme alla localizzazione di un software, potrebbe essere corretto).
 
 Riavvia i server:
 
@@ -490,9 +497,9 @@ Sposta tutto nella *docroot* del webserver:
 
     mv openemr-7.0.0 /var/www/html/openemr
 
-La procedura di installazione via web è ora disponibile su [[IP-del-server]/openemr]([IP-del-server]/openemr).
+La procedura di installazione via web è ora disponibile su :
 
-Prima di iniziare l'installazione posso caricare il backup di un database già esistente.
+    [IP-del-server]/openemr
 
         NOTA SUI PERMESSI: la procedura guidata dice 
 
