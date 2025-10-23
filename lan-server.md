@@ -97,7 +97,7 @@ Vedi anche come gestire l'[upload di grandi files](#upload-database-precedenti).
 
 #### Firewall
 
-Se Apache funziona, potrebbe essere necessario aprire le porte del firewall `ufw` (**non preinstallato** in Debian 13):
+Se Apache non funziona, potrebbe essere necessario aprire le porte del firewall `ufw` (**non preinstallato** in Debian 13):
 
     sudo ufw status
 
@@ -129,7 +129,7 @@ Controllo dello stato del server:
 
     sudo systemctl status mysql.service
 
-Per eseguire lo script post installazione:
+Per eseguire lo **script post installazione**:
 
     sudo mysql_secure_installation
 
@@ -147,7 +147,7 @@ Installo:
 
 Assicurarsi che venga installato anche `libapache2-mod-php8.4` per comunicare con il server web.
 
-Abilito, se già non lo è, il modulo Apache per processare codice PHP:
+Abilito, se già non lo è, il **modulo Apache** per processare codice PHP:
 
     sudo a2enmod php8.4
 
@@ -198,11 +198,11 @@ Riavvio Apache:
 
 Controllo se ci sono errori in Apache e apro la pagina:
 
-    http://IP-del-server/phpmyadmin
+    http://[IP-del-server]/phpmyadmin
 
 Se mi dice che manca l'estensione `php-mysqli` risolvo installando il pacchetto `php-mysql`.
 
-> Dei temi sono disponibili [qui](https://www.phpmyadmin.net/themes/). `unzip` l'archivio e lo sposto nella cartella `themes` di phpmyamin.
+> Dei **temi** sono disponibili [qui](https://www.phpmyadmin.net/themes/). `unzip` l'archivio e lo sposto nella cartella `themes` di PMA.
 
 ---
 
@@ -478,7 +478,7 @@ Riavvia i server:
 
 ### Download e spostamento file
 
-Scarica il file (link diretto estratto da sourceforge):
+Sposta il file sul server oppure scaricalo (link diretto estratto da sourceforge):
 
     wget https://downloads.sourceforge.net/project/openemr/OpenEMR%20Current/7.0.0.2/openemr-7.0.0.tar.gz
 
@@ -486,11 +486,11 @@ Estrai l'archivio:
 
     tar -pxvzf openemr-7.0.0.tar.gz
 
-Sposta tutto nella root del webserver:
+Sposta tutto nella *docroot* del webserver:
 
     mv openemr-7.0.0 /var/www/html/openemr
 
-La procedura di installazione via web è ora disponibile su [192.168.1.200/openemr](192.168.1.200/openemr).
+La procedura di installazione via web è ora disponibile su [[IP-del-server]/openemr]([IP-del-server]/openemr).
 
 Prima di iniziare l'installazione posso caricare il backup di un database già esistente.
 
@@ -506,7 +506,7 @@ Prima di iniziare l'installazione posso caricare il backup di un database già e
 
 Prima di iniziare l'installazione, provo a caricare il vecchio database (+backup) sul server. L'ho salvato come unico file sql, molto grande.
 
-Se necessario, bisogna aumentare il **limite massimo di upload** e post di Apache, che ha effetto sul limite mostrato da phpmyadmin. Modifico `php.ini`:
+Se necessario, bisogna aumentare il **limite massimo di upload** e post di Apache, che ha effetto sul limite mostrato da phpMyAdmin. Modifico `php.ini`:
 
     sudo nano /etc/php/8.4/apache2/php.ini
 
@@ -520,7 +520,7 @@ Modifico le impostazioni a riga `419`, `699` e `851`:
 
     sudo systemctl restart apache2
 
-Uso ora la pagina di importazione di phpmyadmin per caricare il file di backup. Ci vuole un po'!
+Uso ora la pagina di importazione di phpMyAdmin per caricare il file di backup. Ci vuole un po'!
 
 ### Installazione
 
@@ -531,11 +531,11 @@ La procedura guidata è raggiungibile da [192.168.1.200/openemr](192.168.1.200/o
 | nome                  | commento                                          | valore          |
 |-----------------------|---------------------------------------------------|-----------------|
 | server host           | IP del server MySQL                               | `192.168.1.200` |
-| database name         | il nome del db in PHPmyAdmin                      | `openemr`       |
+| database name         | il nome del db in phpMyAdmin                      | `openemr`       |
 | login name            | username per MySQL                                | `openemr`       |
 | password              | pass dell'utente sopra                            | `administrator` |
 | root account          | utente root di MySQL, crea l'utente sopra e il db | `root`          |
-| root password         | vedi tabella utenti in PHPmyAdmin                 | `lan`           |
+| root password         | vedi tabella utenti in phpMyAdmin                 | `lan`           |
 | user hostname         | IP del server PHP                                 | `192.168.1.200` |
 | initial login name    | nome amministratore                               | `administrator` |
 | initial user password | password amministratore                           | `administrator` |
