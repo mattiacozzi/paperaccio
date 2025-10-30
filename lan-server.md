@@ -1,12 +1,13 @@
 # LAN-server
 
-## Info
 - OS: *Debian 13 Trixie*
 - CPU: *Intel Atom N455@1.66GHz*
 - Memory: *2 GiB*
 - Disk: *128 GB SSD*
 - IP: `192.168.1.200/24`
 - Access Point: *NetGear **QUALCOSA*** @ `192.168.1.254`
+
+> Il `/24` dopo l'IP indica che i primi 24 bit = 3 byte = tre numeri sono gli stessi per tutta la rete. Se fosse stato `/16` sarebbero stati uguali i primi due numeri dell'IP. Una rete `/24` quindi è più piccola di una rete `/16`.
 
 ## TODO
 - [ ] impostare openEMR
@@ -29,8 +30,6 @@
 
 ### SSH
 
-Fonte: [debian wiki](https://wiki.debian.org/SSH).
-
 Per installare il server (nel caso non lo avessi fatto durante l'installazione):
 
     apt install openssh-server
@@ -42,6 +41,8 @@ Per collegarsi al server:
 Se l'utente è lo stesso basta:
 
     ssh 192.168.1.200
+
+Fonte: [debian wiki](https://wiki.debian.org/SSH).
 
 ### SUDO
 
@@ -87,6 +88,8 @@ Partendo da una nuova installazione di Debian **con SSH**, aggiorniamo i reposit
 
     sudo apt update
     sudo apt upgrade
+
+Le impostazioni di **connessione** della macchina sono contenute nel file `/etc/network/interfaces`.
 
 ### Apache
 
@@ -229,7 +232,7 @@ Per installare saltando il controllo di compatibilità del sistema:
 
 **Problema.** 
 
-Dopo aver installato pihole e apache2, la pagina di login di pihole viene mostrata come index di file perché entrambi usano la porta 80. Bisogna lavorare sulle porte di pihole.
+Dopo aver installato pihole e Apache2, la pagina di login di pihole viene mostrata come index di file perché entrambi usano la porta 80. Bisogna lavorare sulle porte di pihole.
 
 Modifico il file `/etc/pihole/pihole.toml` alla sezione `webserver.port`:
 
@@ -241,7 +244,7 @@ Alzo tutte le porte di 1.
 
 L'interfaccia web è ora disponibile a: 
 
-    http://192.168.1.200:81/admin/login
+    http://[IP-del-server]:81/admin/login
 
 Se non ho segnato la pass di primo accesso:
 
@@ -349,10 +352,9 @@ Make sure your FTP service either:
 https://github.com/sukria/Backup-Manager
 
 
-
 ## Copiare file sul server
 
-In alternativa a [FTP](#server-ftp).
+In alternativa a [FTP](#server-ftp) posso usare uno degli strumenti seguenti.
 
 ### scp
 
@@ -384,8 +386,6 @@ La home dell'utente ftp è accessibile anche da un file manager grafico tramite 
 
     sftp://192.168.1.200
 
-
-
 ## Comandi interessanti
 
 ### Ultimi pacchetti installati
@@ -402,7 +402,7 @@ Per vedere gli ultimi 10:
 ls -tl /var/lib/dpkg/info/*.list | head -n 10
 ```
 
-[Fonte](https://unix.stackexchange.com/questions/510811/how-to-uninstall-or-remove-recently-installed-packages)
+[Fonte](https://unix.stackexchange.com/questions/510811/how-to-uninstall-or-remove-recently-installed-packages).
 
 
 ### ...
@@ -497,17 +497,26 @@ Sposta tutto nella *docroot* del webserver:
 
     mv openemr-7.0.0 /var/www/html/openemr
 
-La procedura di installazione via web è ora disponibile su :
+La procedura di installazione via web è ora disponibile su:
 
     [IP-del-server]/openemr
 
-        NOTA SUI PERMESSI: la procedura guidata dice 
+> Nota sui permessi: all'inizio della procedura guidata viene controllato che `/var/www/html/openemr/sites/default/documents` e le sue sottocartelle abbiano i permessi corretti. Prima di iniziare l'installazione, i permessi sono:
 
-        Ensuring the /var/www/html/openemr/sites/default/documents directory and its subdirectories have proper permissions...
+    drwxrwxrwx 2 mattia mattia 4096  6 dic  2022 certificates
+    drwxrwxrwx 2 mattia mattia 4096  6 dic  2022 couchdb
+    drwxrwxrwx 3 mattia mattia 4096  6 dic  2022 custom_menus
+    drwxrwxrwx 2 mattia mattia 4096  6 dic  2022 edi
+    drwxrwxrwx 2 mattia mattia 4096  6 dic  2022 era
+    drwxrwxrwx 2 mattia mattia 4096  6 dic  2022 letter_templates
+    drwxrwxrwx 3 mattia mattia 4096  6 dic  2022 logs_and_misc
+    drwxrwxrwx 3 mattia mattia 4096  6 dic  2022 mpdf
+    drwxrwxrwx 3 mattia mattia 4096  6 dic  2022 onsite_portal_documents
+    drwxrwxrwx 2 mattia mattia 4096  6 dic  2022 procedure_results
+    drwxrwxrwx 4 mattia mattia 4096  6 dic  2022 smarty
+    drwxrwxrwx 2 mattia mattia 4096  6 dic  2022 temp
 
-        /var/www/html/openemr/sites/default/documents directory and its subdirectories are ready.
-
-        quindi queste directories hanno i permessi corretti!!
+> La prima `d` indica che si tratta di directory. Le cartelle sono proprietà di `mattia`, con gruppo `mattia` e la possibilità per tutti di leggere, scrivere, ed eseguire (nel caso delle cartelle, il permesso di esecuzione corrisponde al permesso di apertura.) In termini numerici, questi permessi corrispondono a `777`.
 
 ### Upload database precedenti
 
@@ -535,14 +544,21 @@ La procedura guidata è raggiungibile da [192.168.1.200/openemr](192.168.1.200/o
 
 **Dati per l'installazione:**
 
+Se ho già un database importato, allora devo prima creare l'utente MySQL da usare per gestire il db. Lo creo da phpMyAdmin con i dati qui sotto. Devo ovviamente anche fornire **tutti** i privilegi sul database `openemr`all'utente appena creato.
+
+???? Per poter riuscire a fare login da un altro computer, devo sul server, da phpMyAdmin, modificare il nome host per root permettendo il login da ogni posizione.
+
+> Avrei potuto prima creare l'utente e contestualmente il database con lo stesso nome e solo poi fare un dump dei dati **evitando l'istruzione `CREATE DATABASE`**.
+
 | nome                  | commento                                          | valore          |
 |-----------------------|---------------------------------------------------|-----------------|
 | server host           | IP del server MySQL                               | `192.168.1.200` |
+| server port           | la porta usata per comunicare in rete             | `3306`          |
 | database name         | il nome del db in phpMyAdmin                      | `openemr`       |
 | login name            | username per MySQL                                | `openemr`       |
 | password              | pass dell'utente sopra                            | `administrator` |
 | root account          | utente root di MySQL, crea l'utente sopra e il db | `root`          |
-| root password         | vedi tabella utenti in phpMyAdmin                 | `lan`           |
+| root password         | vedi tabella utenti in phpMyAdmin                 | solitalunga     |
 | user hostname         | IP del server PHP                                 | `192.168.1.200` |
 | initial login name    | nome amministratore                               | `administrator` |
 | initial user password | password amministratore                           | `administrator` |
