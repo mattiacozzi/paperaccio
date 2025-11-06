@@ -10,16 +10,17 @@
 > Il `/24` dopo l'IP indica che i primi 24 bit = 3 byte = tre numeri sono gli stessi per tutta la rete. Se fosse stato `/16` sarebbero stati uguali i primi due numeri dell'IP. Una rete `/24` quindi è più piccola di una rete `/16`.
 
 ## TODO
-- [ ] impostare openEMR
-- [ ] finire guida openEMR
-- [ ] scrivere guida scp
-- [ ] scrivere guida rsync
-- [ ] scrivere guida backup (backup-manager)
 - [ ] capire la questione dei permessi di /var/www/html/
 - [ ] aggiornare materiali.html
 - [ ] aggiornare risorse.html
 - [ ] controllare pihole
+- [ ] guide generiche
+  - [ ] scrivere guida scp
+  - [ ] scrivere guida rsync
+  - [ ] scrivere guida backup (backup-manager)
 - [x] gestione schermo
+- [x] finire guida openEMR
+- [x] impostare openEMR
 - [x] scrivere guida cockpit
 - [x] scrivere guida pacchetti utili
 - [x] scrivere guida apache
@@ -44,7 +45,7 @@ Se l'utente è lo stesso basta:
 
 Fonte: [debian wiki](https://wiki.debian.org/SSH).
 
-### SUDO
+### sudo
 
 Mi autentico come root e installo `sudo`:
 
@@ -61,7 +62,7 @@ Torno utente normale (`exit` o `CTRL+D`), **logout** per applicare la modifica.
 
 All'inizio conviene installare alcuni pacchetti, se non già presenti:
 
-    sudo apt install git unzip rsync curl bat
+    sudo apt install git unzip rsync curl bat lm-sensors
 
 ### Gestione schermo
 
@@ -405,9 +406,11 @@ ls -tl /var/lib/dpkg/info/*.list | head -n 10
 [Fonte](https://unix.stackexchange.com/questions/510811/how-to-uninstall-or-remove-recently-installed-packages).
 
 
-### ...
+### Temperatura del server
 
+Tramite il pacchetto `lm-sensors`:
 
+    sensors
 
 ## Programmi utili
 
@@ -544,9 +547,9 @@ La procedura guidata è raggiungibile da [192.168.1.200/openemr](192.168.1.200/o
 
 **Dati per l'installazione:**
 
-Se ho già un database importato, allora devo prima creare l'utente MySQL da usare per gestire il db. Lo creo da phpMyAdmin con i dati qui sotto. Devo ovviamente anche fornire **tutti** i privilegi sul database `openemr`all'utente appena creato.
+1. Se ho già un database importato, allora devo prima creare l'utente MySQL da usare per gestire il db. Lo creo da phpMyAdmin con i dati qui sotto. Devo ovviamente anche fornire **tutti** i privilegi sul database `openemr` all'utente appena creato.
 
-???? Per poter riuscire a fare login da un altro computer, devo sul server, da phpMyAdmin, modificare il nome host per root permettendo il login da ogni posizione.
+> Per poter riuscire a fare login da un altro computer, devo sul server, da phpMyAdmin, modificare il nome host per `root` permettendo il login da ogni posizione.
 
 > Avrei potuto prima creare l'utente e contestualmente il database con lo stesso nome e solo poi fare un dump dei dati **evitando l'istruzione `CREATE DATABASE`**.
 
@@ -563,35 +566,91 @@ Se ho già un database importato, allora devo prima creare l'utente MySQL da usa
 | initial login name    | nome amministratore                               | `administrator` |
 | initial user password | password amministratore                           | `administrator` |
 
-1. Al passo 4 dell'installazione viene richiesto di modificare un file di configurazione di Apache:
+> Se l'installazione non inizia perché fallisce il login come utente `openemr`, andare nella tabella utenti di phpMyAdmin e modificare il nome host dell'utente `openemr` per funzionare da **qualsiasi host** (per poter gestire il db da remoto).
 
-    ```bash
-    sudo cp /opt/lampp/apache2/conf/httpd.conf /opt/lampp/apache2/conf/httpd.conf.backup
-    sudo nano /opt/lampp/apache2/conf/httpd.conf
-    ```
+Questo passaggio dell'installazione richiede un po' di tempo, attendere senza ricaricare la pagina.
 
-    Aggiungere queste righe alla fine del file:
+2. Al passo 4 dell'installazione viene richiesto di modificare un file di configurazione di Apache, `php.ini`, pertanto:
+
+    sudo nano /etc/php/8.4/apache2/php.ini
+
+e modifico i valori richiesti (leggi con attenzione!).
+
+3. Al passo 5 dell'installazione viene richiesta una modifica al file di configurazione di apache.
+
+    sudo nano /etc/apache2/apache2.conf
+
+Aggiungere queste righe alla fine del file:
     
     ```php
-    <Directory "/opt/lampp/htdocs/openemr">
+    <Directory "/var/www/html/openemr">
         AllowOverride FileInfo
         Require all granted
     </Directory>
-    <Directory "/opt/lampp/htdocs/openemr/sites">
+    <Directory "/var/www/html/openemr/sites">
         AllowOverride None
     </Directory>
-    <Directory "/opt/lampp/htdocs/openemr/sites/*/documents">
+    <Directory "/var/www/html/openemr/sites/*/documents">
         Require all denied
     </Directory>
     ```
-1. Procedere con l'installazione. Al termine riavviare il server Apache.
+4. Procedere con l'installazione. Al termine riavviare il server Apache.
 
-1. Il gestionale è disponibile all'indirizzo:
+    sudo systemctl restart apache2
+
+> Nel caso di errori, i log di apache sono in `/var/log/apache2/`.
+
+5. Il gestionale è disponibile all'indirizzo:
 
         https://localhost/openemr
 
     oppure:
 
-        [IP-address]/openemr
+        http://[IP-del-server]/openemr
 
-1. Per importare solo i dati degli utenti da altri database, importo da phpMyAdmin nella tabella `patient_data` il file `patient-dump.sql`.
+6. **Problema:** dopo l'installazione, la pagina di login restituisce un generico errore 500. Controllo il log di apache in `/var/log/apache2/error.log` e trovo:
+
+    PHP Parse error:  syntax error, unexpected token ":" in /var/www/html/openemr/vendor/twig/twig/src/Environment.php(358) : eval()'d code on line 48
+
+Sembra esserci un problema con `twig`. scarico la versione più aggiornata da [qui](https://github.com/twigphp/Twig) e la sposto sul server:
+
+    scp -r /home/mattia/Downloads/twig/ mattia@192.168.1.200:/home/mattia
+
+I file originali erano in `/var/www/html/openemr/vendor/twig/twig`, rispettare la struttura. (Fonte)[https://community.open-emr.org/t/syntax-error-on-first-start-in-environment-php/24048/6].
+
+7. **Altro problema:** i moduli all'interno della pagina non vengono caricati. Provo la soluzione [qui](https://community.open-emr.org/t/page-has-rejected-the-connection/13319), lavorando sul file:
+
+    sudo nano /etc/apache2/conf-available/ssl-params.conf
+
+e commentando la riga:
+
+    #Header always set X-Frame-Options DENY
+
+Riavvio il server apache:
+
+    sudo systemctl restart apache2
+
+### Impostazione
+
+1. Creazione degli account di base (medici e front desk), prima i medici e poi il desk:
+
+| user         | nome      | cognome | id |
+|--------------|-----------|---------|----|
+| dott-rossi   | Antonella | Rossi   | 5  |
+| dott-enoki   | Nobuo     | Enoki   | 6  |
+| dott-mellino | Francesco | Mellino | 7  |
+|desk-spada    | Alice     | Spada   | 8  |
+|desk-salas    | Carla     | Salas   | 9  |
+|desk-pietra   | Filippo   | Pietra  | 10 |
+
+Gli account utenti si trovano nella tabella `users_secure`.
+
+2. Per importare i dati degli utenti da altri database, importo da phpMyAdmin nella tabella `patient_data` il file `patient-dump.sql`. Il campo che contiene l'ID del medico assegnato è `providerID` e oscilla tra 5 e 7.
+
+3. Per configurare gli orari di presenza in studio bisogno creare un nuovo evento di calendario per gli operatori e indicare come tipo "In ufficio", "Fuori ufficio" o "Pranzo".
+
+### Backup
+
+Una volta impostato, scarico un backup completo, `emr_backup.tar`. Contiene un file SQL per il database e la cartella `/var/www/html/openemr/`.
+
+edp@sorgenia.it
