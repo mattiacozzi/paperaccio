@@ -325,7 +325,7 @@ def process_dir(top_dir, opts):
         <tr class="file">
             <td></td>
             <td>
-                <a href="{quote(entry_path)}">
+                <a href="{path_top_dir.name}/{quote(entry_path)}">
                     <svg width="1.5em" height="1em" version="1.1" viewBox="0 0 265 323"><use xlink:href="#{entry_type}"></use></svg>
                     <span class="name">{entry.name}</span>
                 </a>

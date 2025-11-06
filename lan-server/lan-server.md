@@ -689,3 +689,12 @@ I permessi sono:
 
     drwxrwxr-x  2 www-data www-data   4096 19 ott 20.36 risorse
     -rw-rw-r--  1 www-data www-data  11036 19 ott 20.36 risorse.html
+
+Numericamente, corrispondono a `775` per le cartelle e `664` per i file.
+
+Per spostare da locale al server, uso `scp`:
+
+    scp -r lan-server mattia@192.168.1.200:/home/mattia
+
+Sposto poi i file che mi interessano in `/var/www/html/`. Uso `nnn`: seleziono con la barra spaziatrice e copio con `p`. Comodo usare due spazi di lavoro (mi sposto con i numeri).
+
