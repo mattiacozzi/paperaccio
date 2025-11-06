@@ -8,6 +8,11 @@
 # By default only the current folder is processed.
 # Use -r or --recursive to process nested folders.
 
+# UTILIZZO:
+# python3 indexer.py -r [cartella]
+# python3 indexer.py -r materiali
+
+
 import argparse
 import datetime
 import os
@@ -15,7 +20,7 @@ import sys
 from pathlib import Path
 from urllib.parse import quote
 
-DEFAULT_OUTPUT_FILE = 'index.html'
+DEFAULT_OUTPUT_FILE = 'output.html'
 
 
 def process_dir(top_dir, opts):
